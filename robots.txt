@@ -1,0 +1,13 @@
+# Robots.txt for C.I.S Cedars International College Digital Campus
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+# Disallow internal query parameters and portal direct entry
+Disallow: /?portal=*
+Disallow: /admin*
+
+# Sitemap Location
+Sitemap: https://cis-college.edu.krd/sitemap.xml

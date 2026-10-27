@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.I.S Cedars International College | كۆلێژی CIS</title>
+  <meta name="description"
+    content="Official website of C.I.S Cedars International College. 3-year diploma programs in IT, Accounting, Management, Design, English, and Construction with dedicated Student, Teacher, and Admin portals.">
+
+  <!-- Domain & Cyber Security Headers (CSP, Anti-Sniffing, Anti-Clickjacking) -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' blob: data: https:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph & Domain SEO Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="C.I.S Cedars International College | كۆلێژی CIS">
+  <meta property="og:description"
+    content="Official digital campus of C.I.S Cedars International College. 3-Year Diploma Programs in IT, Accounting, Management, Design, English, and Construction.">
+  <meta property="og:image" content="assets/images/cis_logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon / Shield Icon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/cis_logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar" id="mainHeader">
+    <div class="container">
+      <a href="#home" class="nav-brand" id="brandLogo">
+        <img src="assets/images/cis_logo.jpg" alt="CIS Cedars International Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <h1 id="navBrandTitle">C.I.S</h1>
+          <p id="navBrandSubtitle">Cedars International College</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav>
+        <ul class="nav-menu" id="navMenuList">
+          <li><a href="#home" class="nav-link active" onclick="navigateToHome(event)" data-i18n="navHome">Home</a></li>
+          <li><a href="#departments" class="nav-link" data-i18n="navDepartments">Academic Programs</a></li>
+          <li><a href="#public-videos-section" class="nav-link" id="navLinkVideos" data-i18n="navVideos">College Media &
+              Bulletins</a></li>
+          <li id="navItemPortalSection"><a href="javascript:void(0)" onclick="handleNavPortalClick()" class="nav-link"
+              data-i18n="navPortal">Portal Workspace</a></li>
+          <li><a href="javascript:void(0)" onclick="openDeveloperAboutModal()" class="nav-link"
+              data-i18n="navAbout">About Creator</a></li>
+          <li><a href="#contact" class="nav-link" onclick="navigateToContact(event)" data-i18n="navContact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions with Top-Corner Login & Language Toggle -->
+      <div class="nav-actions">
+        <!-- Language Switcher (EN / کوردی) -->
+        <div class="lang-toggle" id="langToggle">
+          <button type="button" class="lang-btn active" id="btnLangEn" onclick="switchLanguage('en')">EN</button>
+          <button type="button" class="lang-btn" id="btnLangKu" onclick="switchLanguage('ku')">کوردی</button>
+        </div>
+
+        <!-- NOTIFICATION BELL & DROPDOWN (Feature 4) -->
+        <div class="notif-bell-wrapper" id="notifBellWrapper">
+          <button type="button" class="notif-bell-btn" id="btnNotificationBell"
+            onclick="toggleNotificationDrawer(event)" title="Notifications (ئاگادارییەکان)" aria-label="Notifications">
+            🔔
+            <span class="notif-badge-count" id="notificationUnreadBadge" style="display: none;">0</span>
+          </button>
+          <div id="notificationDropdownMenu" class="notif-dropdown-menu">
+            <div class="notif-dropdown-header">
+              <div style="font-weight: 800; font-size: 0.92rem; color: #ffffff;">🔔 Notifications (ئاگادارییەکان)</div>
+              <button type="button" class="notif-clear-btn" onclick="markAllNotificationsAsRead()">Mark read (خوێندنەوەی
+                هەمووی)</button>
+            </div>
+            <div id="notificationItemsList" class="notif-items-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TOP CORNER LOGIN / USER SESSION (la swchik sarawa) -->
+        <div id="cornerAuthContainer" class="corner-user-container">
+          <!-- Button shown when logged out -->
+          <button type="button" class="btn btn-primary btn-sm btn-pulse" id="btnTopCornerLogin"
+            onclick="openLoginModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            <span data-i18n="btnTopLogin">Log In</span>
+          </button>
+
+          <!-- User Widget shown when logged in -->
+          <div id="cornerUserBadge" class="corner-user-badge" style="display: none;"
+            onclick="toggleCornerDropdown(event)">
+            <div id="cornerAvatar" class="corner-avatar">ZR</div>
+            <div class="corner-user-info">
+              <span id="cornerUserName" class="corner-user-name">Zhiyar </span>
+              <span id="cornerUserRole" class="corner-user-role">Student</span>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+
+          <!-- Dropdown Menu -->
+          <div id="cornerDropdownMenu" class="corner-dropdown-menu">
+            <button class="corner-dropdown-item" onclick="scrollToActiveDashboard()">
+              <span>📋</span> <span data-i18n="menuMyDashboard">My Dashboard</span>
+            </button>
+            <button class="corner-dropdown-item" onclick="openLoginModal()">
+              <span>🔄</span> <span data-i18n="menuSwitchAccount">Switch Account</span>
+            </button>
+            <button class="corner-dropdown-item logout" onclick="logoutAnyUser()">
+              <span>🚪</span> <span data-i18n="btnLogout">Sign Out</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. PUBLIC LANDING PAGE VIEW (Completely separate from authenticated workspaces) -->
+  <div id="publicLandingView">
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <img src="assets/images/cis_logo.jpg" alt="Logo"
+                  style="width: 22px; height: 22px; border-radius: 4px; object-fit: contain; vertical-align: middle;">
+                <span data-i18n="heroBadge">Cedars International College • Est. 1991</span>
+              </div>
+
+              <h1 class="hero-title">
+                <span data-i18n="heroTitlePrefix">Shaping Professional Careers at</span><br>
+                <span class="text-gradient" data-i18n="heroTitleGradient">C.I.S Cedars International College</span>
+              </h1>
+
+              <!-- User Requested Exact 3-Year Program Quote Box -->
+              <div class="hero-programs-quote-box">
+                <p id="heroProgramQuoteText">
+                  "We empower students with 3-year programs in IT, Accounting, Management, and Construction. We combine
+                  practical skills with top-quality education."
+                </p>
+              </div>
+
+              <div class="hero-cta">
+                <a href="#departments" class="btn btn-primary" id="btnHeroExplore">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                    <path d="M6 6h10" />
+                    <path d="M6 10h10" />
+                  </svg>
+                  <span data-i18n="btnHeroClasses">Explore 3-Year Programs & Apply</span>
+                </a>
+                <button type="button" class="btn btn-secondary" onclick="openLoginModal()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <polyline points="10 17 15 12 10 7" />
+                    <line x1="15" y1="12" x2="3" y2="12" />
+                  </svg>
+                  <span data-i18n="btnTopLogin">Student / Teacher / Admin Login</span>
+                </button>
+              </div>
+
+              <!-- Quick Feature Tags (Monochrome Black & White) -->
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦ Computer
+                  Science (IT)</span>
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦ Accounting &
+                  Finance</span>
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦ Design</span>
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦
+                  Management</span>
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦ English
+                  Language</span>
+                <span class="meta-pill" style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">✦
+                  Construction</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Bar Ribbon -->
+        <div class="stats-bar">
+          <div class="container">
+            <div class="stats-grid" id="statsGridContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Academic Departments Section (User's Exact Programs) -->
+      <section class="section" id="departments">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge" data-i18n="deptSectionBadge">3-Year Academic Programs</span>
+            <h2 class="section-title">
+              <span data-i18n="deptSectionTitle">Explore Our Available</span> <span class="text-gradient"
+                data-i18n="deptSectionTitleGradient">Departments & Classes</span>
+            </h2>
+            <p class="section-subtitle" data-i18n="deptSectionSubtitle">
+              Choose your desired 3-year diploma program. Prospective students can apply directly for admission.
+            </p>
+          </div>
+
+          <!-- Department Filter Buttons -->
+          <div class="dept-filters" id="deptFilterGroup">
+            <button class="filter-btn active" data-filter="all" onclick="filterDepartments('all', this)"
+              data-i18n="filterAll">All Departments</button>
+            <button class="filter-btn" data-filter="cs" onclick="filterDepartments('cs', this)">Computer Science
+              (IT)</button>
+            <button class="filter-btn" data-filter="accounting"
+              onclick="filterDepartments('accounting', this)">Accounting</button>
+            <button class="filter-btn" data-filter="design" onclick="filterDepartments('design', this)">Design</button>
+            <button class="filter-btn" data-filter="management"
+              onclick="filterDepartments('management', this)">Management</button>
+            <button class="filter-btn" data-filter="english" onclick="filterDepartments('english', this)">English
+              Language</button>
+            <button class="filter-btn" data-filter="construction"
+              onclick="filterDepartments('construction', this)">Construction</button>
+          </div>
+
+          <!-- Department Cards Grid with "Apply Now" for visitors -->
+          <div class="departments-grid" id="departmentsGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+         PUBLIC CAMPUS VIDEOS & OFFICIAL ADMIN ANNOUNCEMENTS
+         (Only visible publicly and managed exclusively by Admin)
+         ========================================================================== -->
+      <section class="section" id="public-videos-section" style="background: rgba(15, 15, 15, 0.6);">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge" data-i18n="mediaSectionBadge">Official Media & Bulletins</span>
+            <h2 class="section-title">
+              <span data-i18n="mediaSectionTitle">College Broadcasts &</span> <span class="text-gradient"
+                data-i18n="mediaSectionTitleGradient">Official Campus Videos</span>
+            </h2>
+            <p class="section-subtitle" data-i18n="mediaSectionSubtitle">
+              Official announcements, college tour videos, and presidency bulletins published and maintained exclusively
+              by C.I.S Administration.
+            </p>
+          </div>
+
+          <!-- Admin Control Button (visible only when Admin is logged in) -->
+          <div id="adminVideoControlBar" style="display: none; justify-content: flex-end; margin-bottom: 20px;">
+            <button class="btn btn-primary btn-sm" onclick="openAddPublicVideoModal()">
+              + <span data-i18n="btnAddPublicVideo">Admin: Add Official Video / Bulletin</span>
+            </button>
+          </div>
+
+          <!-- Public Videos Grid -->
+          <div class="video-grid" id="publicVideosContainer">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+         PUBLIC PORTAL GATEWAY CARDS (For public visitors to select role to login)
+         ========================================================================== -->
+      <section class="section career-portal-section" id="portal-section">
+        <div class="container">
+          <div id="portalSelectorGate" class="portal-gate-wrapper">
+            <div class="section-header">
+              <span class="section-badge" data-i18n="portalBadge">Secure Portal Gateway</span>
+              <h2 class="section-title">
+                <span data-i18n="portalMainTitle">Academic Portals:</span> <span class="text-gradient"
+                  data-i18n="portalMainTitleGradient">Student, Teacher & Admin</span>
+              </h2>
+              <p class="section-subtitle" data-i18n="portalMainSubtitle">
+                Log in to access your designated workspace. Students see their lessons and recorded teacher videos;
+                teachers manage classes and messages; admins oversee all operations.
+              </p>
+            </div>
+
+            <div class="portal-role-cards" style="grid-template-columns: repeat(3, 1fr);">
+              <!-- Student Card -->
+              <div class="glass-panel portal-role-card" onclick="openLoginModal('student')">
+                <div class="portal-role-icon">🎓</div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;"
+                  data-i18n="cardStudentTitle">Student Portal</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;"
+                  data-i18n="cardStudentDesc">
+                  Watch teacher recorded video lessons, view coursework materials, check direct teacher messages, and
+                  apply for jobs.
+                </p>
+                <button class="btn btn-primary btn-sm" style="width: 100%;">
+                  <span data-i18n="btnStudentEnter">Student Log In</span>
+                </button>
+              </div>
+
+              <!-- Teacher Card -->
+              <div class="glass-panel portal-role-card" onclick="openLoginModal('teacher')">
+                <div class="portal-role-icon">👨‍🏫</div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;"
+                  data-i18n="cardTeacherTitle">Faculty & Teacher</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;"
+                  data-i18n="cardTeacherDesc">
+                  Upload recorded class lecture videos, inspect enrolled student rosters, and send direct or broadcast
+                  messages.
+                </p>
+                <button class="btn btn-secondary btn-sm" style="width: 100%;">
+                  <span data-i18n="btnTeacherEnter">Teacher Access</span>
+                </button>
+              </div>
+
+              <!-- Admin Card -->
+              <div class="glass-panel portal-role-card" onclick="openLoginModal('admin')">
+                <div class="portal-role-icon">👑</div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;"
+                  data-i18n="cardAdminTitle">Admin Control</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;" data-i18n="cardAdminDesc">
+                  Master oversight of all departments, manage public homepage videos, and approve prospective student
+                  enrollments.
+                </p>
+                <button class="btn btn-secondary btn-sm" style="width: 100%;">
+                  <span data-i18n="btnAdminEnter">Admin Access</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Admissions Section -->
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge" data-i18n="contactBadge">Communications & Messaging Hub</span>
+            <h2 class="section-title">
+              <span data-i18n="contactTitle">Contact & Official</span> <span class="text-gradient"
+                data-i18n="contactTitleGradient">Communications Center</span>
+            </h2>
+            <p class="section-subtitle" data-i18n="contactSubtitle">
+              Direct communications between Students, Teachers, and College Administration. Send announcements,
+              inquiries, and private notices.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Left: College Official Information -->
+            <div class="contact-info-card glass-panel">
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <h4 style="color: #ffffff; font-size: 1rem; font-weight: 700;">C.I.S Location</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">Cedars Vocational High School, Sulaymaniyah,
+                    inside Shari Dayk Complex opposite Chavy Land</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div>
+                  <h4 style="color: #ffffff; font-size: 1rem; font-weight: 700;">Phone / WhatsApp</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">+964 (0) 772 318 8000</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div>
+                  <h4 style="color: #ffffff; font-size: 1rem; font-weight: 700;">Official Inquiries</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">cis.iraq.com • info@cis.edu.krd</p>
+                </div>
+              </div>
+
+              <!-- Quick Creator Attribution Link -->
+              <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border-light);">
+                <div style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 6px;">Developed & Engineered by:</div>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="openDeveloperAboutModal()"
+                  style="width: 100%; justify-content: center; gap: 8px;">
+                  <span>👨‍💻</span> <strong>Zhiyar (ژیار)</strong> • Lead Systems Creator
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Dynamic Central Messaging Hub -->
+            <div>
+              <!-- View 1: When User is Logged In (Interactive Messaging System) -->
+              <div id="authContactHub" class="contact-hub-wrapper" style="display: none;">
+                <!-- User Session Bar -->
+                <div
+                  style="display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border-light); flex-wrap: wrap; gap: 8px;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span id="contactUserAvatar"
+                      style="width: 32px; height: 32px; border-radius: 50%; background: #ffffff; color: #000000; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">ZA</span>
+                    <div>
+                      <span style="font-size: 0.88rem; font-weight: 700; color: #ffffff;"
+                        id="contactUserName">Zhiyar</span>
+                      <span class="meta-pill" id="contactUserRoleBadge"
+                        style="font-size: 0.7rem; margin-left: 6px;">Admin</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 0.78rem; color: var(--text-dim);" id="contactUserIdBadge">ID:
+                      CIS-ADM-01</span>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="scrollToActiveDashboard()"
+                      style="font-size: 0.75rem; padding: 4px 10px; gap: 6px;">
+                      <span data-i18n="btnReturnDashboard">← Dashboard</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Messaging Tabs: Inbox / Compose / Sent -->
+                <div class="msg-nav-tabs">
+                  <button type="button" class="msg-tab-btn active" id="tabContactInbox"
+                    onclick="switchContactTab('inbox')">
+                    <span>📥</span> <span data-i18n="tabReceived">Received</span>
+                    <span class="msg-count-pill" id="contactInboxBadge">1</span>
+                  </button>
+                  <button type="button" class="msg-tab-btn" id="tabContactCompose"
+                    onclick="switchContactTab('compose')">
+                    <span>✏️</span> <span data-i18n="tabCompose">Send Message</span>
+                  </button>
+                  <button type="button" class="msg-tab-btn" id="tabContactSent" onclick="switchContactTab('sent')">
+                    <span>📤</span> <span data-i18n="tabSent">Sent Messages</span>
+                  </button>
+                </div>
+
+                <!-- Pane 1: Inbox Feed -->
+                <div id="paneContactInbox">
+                  <div class="messages-feed" id="contactInboxFeed">
+                    <!-- Injected dynamically -->
+                  </div>
+                </div>
+
+                <!-- Pane 2: Compose Message -->
+                <div id="paneContactCompose" style="display: none; padding: 22px;">
+                  <form id="contactComposeForm" onsubmit="handleSendContactMessage(event)">
+                    <div class="form-group">
+                      <label data-i18n="lblRecipientTarget">Recipient Target (Who to send to?)</label>
+                      <select class="form-control" id="contactRecipientSelect" required>
+                        <!-- Dynamically populated based on active role -->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label data-i18n="lblMsgSubject">Subject / Topic</label>
+                      <input type="text" class="form-control" id="contactMsgSubject"
+                        placeholder="e.g. Question regarding CS-101 assignment..." data-i18n-placeholder="phMsgSubject"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label data-i18n="lblMsgContent">Message Content</label>
+                      <textarea class="form-control" id="contactMsgBody" rows="4"
+                        placeholder="Write your official message here..." data-i18n-placeholder="phMsgBody"
+                        required></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
+                      <button type="button" class="btn btn-secondary btn-sm" onclick="switchContactTab('inbox')"
+                        data-i18n="btnCancel">Cancel</button>
+                      <button type="submit" class="btn btn-primary btn-sm">
+                        <span data-i18n="btnSendMsgHub">📨 Send Message</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Pane 3: Sent Messages -->
+                <div id="paneContactSent" style="display: none;">
+                  <div class="messages-feed" id="contactSentFeed">
+                    <!-- Injected dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- View 2: When Public Visitor (Not Logged In) -->
+              <div id="publicContactFormBlock">
+                <form class="contact-form glass-panel" id="mainContactForm" onsubmit="handleContactSubmit(event)">
+                  <div
+                    style="margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-size: 0.82rem; color: #a1a1aa;" data-i18n="lblContactPrompt">Are you a Student,
+                      Faculty, or Admin?</span>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="openLoginModal()"
+                      style="font-size: 0.78rem; padding: 4px 10px;">
+                      <span data-i18n="btnLoginInternal">→ Log In for Internal Messaging</span>
+                    </button>
+                  </div>
+
+                  <div class="form-group">
+                    <label data-i18n="lblFullName">Full Name</label>
+                    <input type="text" class="form-control" id="contactName" placeholder="e.g. Zhiyar Hemn"
+                      data-i18n-placeholder="phContactName" required>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                      <label data-i18n="lblEmail">Email Address</label>
+                      <input type="email" class="form-control" id="contactEmail" placeholder="name@example.com"
+                        data-i18n-placeholder="phContactEmail" required>
+                    </div>
+                    <div class="form-group">
+                      <label data-i18n="lblSubject">Inquiry Department</label>
+                      <select class="form-control" id="contactType">
+                        <option value="cs" data-i18n="deptCS">Computer Science (IT)</option>
+                        <option value="accounting" data-i18n="deptAcc">Accounting & Finance</option>
+                        <option value="design" data-i18n="deptDesign">Design & Digital Arts</option>
+                        <option value="management" data-i18n="deptMgmt">Management & Business</option>
+                        <option value="english" data-i18n="deptEng">English Language</option>
+                        <option value="construction" data-i18n="deptConst">Construction</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-i18n="lblMessage">Your Message</label>
+                    <textarea class="form-control" id="contactMessage" placeholder="How can we assist you?"
+                      data-i18n-placeholder="phContactMessage" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span data-i18n="btnSendMessage">Send Official Message</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+              <img src="assets/images/cis_logo.jpg" alt="Logo" class="brand-logo-img"
+                style="width: 44px; height: 44px;">
+              <div>
+                <h3 style="color: #ffffff; font-size: 1.15rem; font-weight: 800;">C.I.S Cedars College</h3>
+                <p style="font-size: 0.72rem; color: var(--text-muted);" data-i18n="footerProgramsSub">3-Year Technical
+                  & Business Programs</p>
+              </div>
+            </div>
+            <p style="line-height: 1.6; margin-bottom: 20px; font-size: 0.88rem;" data-i18n="footerDesc">
+              We empower students with 3-year programs in IT, Accounting, Management, and Construction. We combine
+              practical skills with top-quality education.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footerColPrograms">3-Year Programs</h4>
+            <ul class="footer-links">
+              <li><a href="#departments" onclick="filterDepartments('cs')" data-i18n="deptCS">Computer Science (IT)</a>
+              </li>
+              <li><a href="#departments" onclick="filterDepartments('accounting')" data-i18n="deptAcc">Accounting &
+                  Finance</a></li>
+              <li><a href="#departments" onclick="filterDepartments('design')" data-i18n="deptDesign">Design & Digital
+                  Arts</a></li>
+              <li><a href="#departments" onclick="filterDepartments('management')" data-i18n="deptMgmt">Management &
+                  Business</a></li>
+              <li><a href="#departments" onclick="filterDepartments('english')" data-i18n="deptEng">English Language</a>
+              </li>
+              <li><a href="#departments" onclick="filterDepartments('construction')"
+                  data-i18n="deptConst">Construction</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footerColPortals">Portal Links</h4>
+            <ul class="footer-links">
+              <li><a href="javascript:void(0)" onclick="openLoginModal('student')" data-i18n="cardStudentTitle">Student
+                  Portal</a></li>
+              <li><a href="javascript:void(0)" onclick="openLoginModal('teacher')" data-i18n="cardTeacherTitle">Faculty
+                  & Teacher</a></li>
+              <li><a href="javascript:void(0)" onclick="openLoginModal('admin')" data-i18n="cardAdminTitle">Admin
+                  Control</a></li>
+              <li><a href="#public-videos-section" data-i18n="navVideos">College Media & Bulletins</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footerColAdmissions">Admissions</h4>
+            <ul class="footer-links">
+              <li><span data-i18n="footerAdmOpen">Admissions Open for 2026-2027</span></li>
+              <li><span data-i18n="footerLocation">Sulaymaniyah City</span></li>
+              <li><span>cis-iraq.com</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 C.I.S Cedars International College. <span data-i18n="footerRights">All Rights Reserved.</span>
+          </p>
+          <p data-i18n="footerBuiltBy">Built by Zhiyar Hemn for CIS College & High School</p>
+        </div>
+      </div>
+    </footer>
+  </div> <!-- end #publicLandingView -->
+
+  <!-- ==========================================================================
+       2. AUTHENTICATED PORTAL VIEW (STRICTLY GATED & SEPARATE)
+       "dway krdnaway account paray sarake namene ba pey account kan paraka bgore"
+       After login, the main landing page disappears completely,
+       and this dedicated workspace page transforms based on the account type.
+       ========================================================================== -->
+  <div id="authenticatedPortalView" style="display: none;">
+    <!-- Dedicated Slim Sticky Portal Top Bar -->
+    <div class="portal-top-bar" id="portalTopBar">
+      <div class="portal-top-bar-left">
+        <a href="javascript:void(0)" onclick="navigateToHome(event)" class="nav-brand"
+          style="cursor: pointer; text-decoration: none;" title="Return to College Homepage">
+          <img src="assets/images/cis_logo.jpg" alt="Logo" class="brand-logo-img"
+            style="width: 32px; height: 32px; border-radius: 6px; border: 1px solid #ffffff;">
+          <div class="brand-text">
+            <h1 style="font-size: 0.95rem; margin: 0; color: #ffffff;">C.I.S Cedars</h1>
+          </div>
+        </a>
+
+        <!-- Fast Portal Links -->
+        <div class="portal-nav-links">
+          <button type="button" class="portal-nav-btn" onclick="navigateToHome(event)">
+            <span>🏠</span> <span data-i18n="portalNavHome">Home</span>
+          </button>
+          <button type="button" class="portal-nav-btn" onclick="openDeveloperAboutModal()">
+            <span>👨‍💻</span> <span data-i18n="portalNavAbout">About Creator</span>
+          </button>
+          <button type="button" class="portal-nav-btn" onclick="navigateToContact(event)">
+            <span>💬</span> <span data-i18n="portalNavContact">Contact & Messages</span>
+          </button>
+        </div>
+
+        <span id="portalRoleBadge" class="portal-role-tag">🎓 Student Portal</span>
+      </div>
+
+      <div class="portal-top-bar-right">
+        <!-- Language Switcher in Portal -->
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btnLangEnPortal" onclick="switchLanguage('en')">EN</button>
+          <button class="lang-btn" id="btnLangKuPortal" onclick="switchLanguage('ku')">کوردی</button>
+        </div>
+
+        <!-- Active User Profile Dropdown (Logout is INSIDE here) -->
+        <div class="portal-profile-wrap" id="portalProfileWrap">
+          <div id="portalUserChip" class="portal-user-chip" onclick="togglePortalProfileDropdown(event)">
+            <span class="portal-chip-avatar" id="portalHeaderAvatar">ZR</span>
+            <div class="portal-chip-text">
+              <strong id="portalHeaderName">Zhiyar</strong>
+              <code id="portalHeaderId">CIS-2024-101</code>
+            </div>
+            <svg class="portal-chip-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+
+          <!-- Profile Dropdown Menu with Logout inside -->
+          <div id="portalProfileDropdown" class="portal-profile-dropdown">
+            <div class="profile-dropdown-header">
+              <div class="profile-dropdown-avatar" id="profileDropdownAvatar">ZR</div>
+              <div>
+                <h4 id="profileDropdownName" style="color: #ffffff; font-size: 0.95rem; margin: 0;">Zhiyar</h4>
+                <div id="profileDropdownRole" class="meta-pill" style="font-size: 0.7rem; margin-top: 2px;">
+                  Administrator</div>
+                <div id="profileDropdownId"
+                  style="font-family: monospace; font-size: 0.75rem; color: #a1a1aa; margin-top: 2px;">CIS-ADM-01</div>
+              </div>
+            </div>
+            <div class="profile-dropdown-divider"></div>
+            <button type="button" class="profile-dropdown-item" onclick="openDeveloperAboutModal()">
+              <span>👨‍💻</span> <span data-i18n="dropAbout">Website Creator</span>
+            </button>
+            <button type="button" class="profile-dropdown-item" onclick="navigateToContact(event)">
+              <span>📬</span> <span data-i18n="dropContact">Contact & Messaging</span>
+            </button>
+            <button type="button" class="profile-dropdown-item" onclick="navigateToHome(event)">
+              <span>🏠</span> <span data-i18n="dropHome">Return to Homepage</span>
+            </button>
+            <div class="profile-dropdown-divider"></div>
+            <button type="button" class="profile-dropdown-item logout-item" onclick="logoutAnyUser()">
+              <span>🚪</span> <span data-i18n="btnLogout">Sign Out / Exit Portal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authenticated Portal Dashboards Container -->
+    <div class="container authenticated-portal-container">
+      <!-- 2. STUDENT AUTHENTICATED DASHBOARD (Only visible to logged-in Student) -->
+      <div class="student-dashboard" id="authenticatedDashboard">
+        <!-- Student Banner -->
+        <div class="student-hero-banner glass-panel">
+          <div class="student-info-left">
+            <div class="student-avatar" id="dashAvatar">ZR</div>
+            <div class="student-details">
+              <h3>
+                <span id="dashStudentName">Zhiyar Hemn</span>
+                <span class="badge-verified" id="dashVerifiedBadge">✓ Enrolled Student</span>
+              </h3>
+              <div class="student-meta-line">
+                <span><strong>ID:</strong> <code id="dashStudentId" style="color: #ffffff;">CIS-2024-101</code></span>
+                <span><strong>Department:</strong> <span id="dashDeptName"
+                    style="color: #ffffff; font-weight: 700;">Computer Science (IT)</span></span>
+                <span><strong>Stage:</strong> <span id="dashStage">Year 2</span></span>
+                <span><strong>GPA:</strong> <span id="dashGpa" style="color: #ffffff; font-weight: 700;">3.94 /
+                    4.00</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="student-metrics-right">
+            <button class="btn btn-secondary btn-sm" onclick="logoutAnyUser()" title="Logout Student Portal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              <span data-i18n="btnLogout">Exit Portal</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Student Tabs -->
+        <div class="dashboard-tabs">
+          <button class="dash-tab-btn active" id="tabStudentVideos" onclick="switchStudentTab('videos', this)">
+            <span>🎥</span> <span data-i18n="tabStudentLessons">Recorded Lecture Videos from Teachers ( وانەی مامۆستا و فیدیۆ تۆمارکراوەکان )</span>
+          </button>
+          <button class="dash-tab-btn" id="tabStudentMessages" onclick="switchStudentTab('messages', this)">
+            <span>💬</span> <span data-i18n="tabStudentMessages">Teacher Messages & Notices (نامەی مامۆستا و ئاگاداریەکان )</span>
+          </button>
+          <button class="dash-tab-btn" id="tabStudentMaterials" onclick="switchStudentTab('materials', this)">
+            <span>📚</span> <span data-i18n="tabStudentMaterials">Lecture Notes & PDF Materials (فایلی  دەرس و زانیاریەکان )</span>
+          </button>
+          <button class="dash-tab-btn" id="tabStudentAssignments" onclick="switchStudentTab('assignments', this)">
+            <span>📝</span> <span>Class Assignments (ئەرکەکانی وانە)</span> <span class="meta-pill"
+              id="studentAssignmentsCountBadge"
+              style="margin-left: 6px; padding: 2px 8px; font-size: 0.7rem; border-color: #ffffff; color: #ffffff;">0</span>
+          </button>
+          <button class="dash-tab-btn" id="tabStudentJobs" onclick="switchStudentTab('jobs', this)">
+            <span>💼</span> <span data-i18n="tabExclusiveJobs">Job & Internship Matches (دۆزینەوەی هەلی کار و بەژداری کردن  )</span>
+          </button>
+        </div>
+
+        <!-- Student Tab 1: Video Lessons Uploaded by Teachers -->
+        <div class="tab-pane" id="paneStudentVideos">
+          <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 6px;"
+              data-i18n="recordedLessonsTitle">
+              Department Class Lessons & Recorded Lecture Videos
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="recordedLessonsSubtitle">
+              Watch lecture recordings and class tutorials uploaded specifically for your major by your professors.
+            </p>
+
+            <div class="student-videos-grid" id="studentLessonsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Tab 2: Messages from Teacher -->
+        <div class="tab-pane" id="paneStudentMessages" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 12px;"
+              data-i18n="inboxTitle">Direct Messages from Your Professors (دەقی نامە بۆ مامۆستاکان)</h3>
+            <div id="studentMessagesList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Send note back to teacher -->
+            <div style="margin-top: 30px; border-top: 1px solid var(--border-light); padding-top: 20px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; color: #ffffff;"
+                data-i18n="sendTeacherNoteTitle">Send a Message to Your Professor</h4>
+              <form id="studentToTeacherMsgForm" onsubmit="handleStudentSendNote(event)">
+                <div class="form-group">
+                  <textarea class="form-control" id="studentNoteText" rows="2"
+                    placeholder="Write your question or request..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">
+                  <span data-i18n="btnSendMsg">Send to Professor</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Tab 3: Course Lecture Notes & PDF Materials -->
+        <div class="tab-pane" id="paneStudentMaterials" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;"
+                  data-i18n="studentMaterialsTitle">
+                  📚 Course Lecture Notes & Study Materials (فایل و سەرچاوەی وانەکان)
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;" data-i18n="studentMaterialsSubtitle">
+                  Download and review syllabus documents, slide presentations, assignments, and textbooks for your
+                  department classes.
+                </p>
+              </div>
+            </div>
+
+            <!-- Material Category Filter Buttons -->
+            <div class="dept-filters" style="margin-bottom: 22px; justify-content: flex-start;"
+              id="studentMaterialFilters">
+              <button class="filter-btn active" data-filter="all" onclick="filterStudentMaterials('all', this)"
+                data-i18n="filterAllMaterials">All Materials (هەموو)</button>
+              <button class="filter-btn" data-filter="pdf" onclick="filterStudentMaterials('pdf', this)">📕 Lecture
+                Notes (فایل)</button>
+              <button class="filter-btn" data-filter="slides" onclick="filterStudentMaterials('slides', this)">📑 Slides
+                (سلاید)</button>
+              <button class="filter-btn" data-filter="book" onclick="filterStudentMaterials('book', this)">📖 Books
+                (کتێب)</button>
+              <button class="filter-btn" data-filter="assignment"
+                onclick="filterStudentMaterials('assignment', this)">📝 Homework / Tasks (ئەرک)</button>
+            </div>
+
+            <!-- Materials Cards Container -->
+            <div class="materials-grid" id="studentMaterialsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Tab 4: Department Jobs -->
+        <div class="tab-pane" id="paneStudentJobs" style="display: none;">
+          <div class="jobs-grid" id="studentMatchedJobsContainer">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Student Tab 5: Class Homework & Assignments -->
+        <div class="tab-pane" id="paneStudentAssignments" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  📝 Class Assignments & Coursework (ئەرکەکانی وانە)
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Review pending coursework, upload solutions/links, and view grades & feedback given by your
+                  professors.
+                </p>
+              </div>
+              <span class="meta-pill" id="studentAssignmentsHeaderBadge"
+                style="border-color: #ffffff; color: #ffffff;">0 Assignments</span>
+            </div>
+
+            <div class="assignment-grid" id="studentAssignmentsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TEACHER AUTHENTICATED DASHBOARD (Only visible to logged-in Teacher) -->
+      <div class="teacher-dashboard" id="teacherDashboard" style="display: none;">
+        <!-- Teacher Banner -->
+        <div class="teacher-hero-banner glass-panel">
+          <div class="student-info-left">
+            <div class="teacher-avatar-badge" id="teacherDashAvatar"
+              style="background: #ffffff; color: #000000; font-weight: 800;">AR</div>
+            <div class="student-details">
+              <h3>
+                <span id="teacherDashName">Prof. Dr. Alan K. Rostam</span>
+                <span class="badge-verified">✓ Verified CIS Faculty</span>
+              </h3>
+              <div class="student-meta-line">
+                <span><strong>Faculty ID:</strong> <code id="teacherDashId"
+                    style="color: #ffffff;">CIS-TEA-01</code></span>
+                <span><strong>Department:</strong> <span id="teacherDashDept"
+                    style="color: #ffffff; font-weight: 700;">Computer Science</span></span>
+                <span><strong>Office:</strong> <span id="teacherDashOffice">Tech Lab 101</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="student-metrics-right">
+            <button class="btn btn-secondary btn-sm" onclick="logoutAnyUser()" title="Logout Teacher Portal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              <span data-i18n="btnLogout">Exit Portal</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher Tabs -->
+        <div class="dashboard-tabs">
+          <button class="dash-tab-btn active" id="tabTeacherClasses" onclick="switchTeacherTab('classes', this)">
+            <span>📚</span> <span data-i18n="tabTeacherCourses">My Assigned Classes</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherAssignments" onclick="switchTeacherTab('assignments', this)">
+            <span>📝</span> <span>Homework & Assignments (ئەرکەکان)</span> <span class="meta-pill"
+              id="teacherAssignmentsBadge"
+              style="margin-left: 6px; padding: 2px 8px; font-size: 0.7rem; border-color: #ffffff; color: #ffffff;">0</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherVideoUpload" onclick="switchTeacherTab('uploadVideo', this)">
+            <span>📹</span> <span data-i18n="tabUploadLectureVideo">Upload Recorded Lecture Video</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherRoster" onclick="switchTeacherTab('roster', this)">
+            <span>👥</span> <span data-i18n="tabTeacherRoster">Enrolled Students & Direct Messages</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherBroadcast" onclick="switchTeacherTab('broadcast', this)">
+            <span>📢</span> <span data-i18n="tabTeacherBroadcast">Send General Message to All Students</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherMaterials" onclick="switchTeacherTab('materials', this)">
+            <span>📑</span> <span>Course Materials & PDFs (دانانی فایل)</span>
+          </button>
+          <button class="dash-tab-btn" id="tabTeacherJobs" onclick="switchTeacherTab('jobs', this)">
+            <span>💼</span> <span>Post Job / Internship (دانانی هەلی کار)</span>
+          </button>
+        </div>
+
+        <!-- Teacher Tab 1: Assigned Classes -->
+        <div class="tab-pane" id="paneTeacherClasses">
+          <div class="teacher-classes-grid" id="teacherClassesGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Teacher Tab: Homework & Assignments Management -->
+        <div class="tab-pane" id="paneTeacherAssignments" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  📝 Class Assignments & Coursework Manager (بەڕێوەبردنی ئەرکەکان)
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Create homework, set deadlines, review submitted solutions from enrolled students, and assign grades &
+                  feedback.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openTeacherAddAssignmentModal()">
+                + Create New Assignment (+ دانانی ئەرکی نوێ)
+              </button>
+            </div>
+
+            <div class="assignment-grid" id="teacherAssignmentsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tab 2: Upload Recorded Lecture Video -->
+        <div class="tab-pane" id="paneTeacherUploadVideo" style="display: none;">
+          <div class="glass-panel"
+            style="padding: 32px; max-width: 760px; margin: 0 auto; border: 1px solid var(--border-light);">
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+              📹 <span data-i18n="uploadVideoTitle">Upload / Add Recorded Class Lecture Video</span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;" data-i18n="uploadVideoDesc">
+              Provide a recorded lecture video for your enrolled students. The video will instantly appear in their
+              student portal.
+            </p>
+
+            <form id="teacherVideoUploadForm" onsubmit="handleTeacherVideoUpload(event)">
+              <div class="form-group">
+                <label>Select Course / Class</label>
+                <select class="form-control" id="uploadClassSelect" required>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Lecture Title</label>
+                <input type="text" class="form-control" id="uploadVideoTitle"
+                  placeholder="e.g. Chapter 4: Database Normalization & Indexing" required>
+              </div>
+
+              <!-- Dual Video Source Switcher: Mobile/Laptop Device File OR YouTube Link -->
+              <div class="video-source-switcher">
+                <button type="button" class="source-tab-btn active teacher-active-btn" id="teacherSourceTabFile"
+                  onclick="switchTeacherVideoSource('file')">
+                  📱 💻 Upload from Mobile / Laptop (فایلی ڤیدیۆ)
+                </button>
+                <button type="button" class="source-tab-btn" id="teacherSourceTabLink"
+                  onclick="switchTeacherVideoSource('link')">
+                  🔗 YouTube / Web Link (لینک)
+                </button>
+              </div>
+
+              <!-- Source 1: Local Video File from Phone/Laptop -->
+              <div id="teacherFileSourceBlock">
+                <div class="file-upload-dropzone teacher-dropzone"
+                  onclick="document.getElementById('teacherVideoFileInput').click()">
+                  <input type="file" id="teacherVideoFileInput"
+                    accept="video/mp4,video/webm,video/ogg,video/quicktime,video/*" style="display: none;"
+                    onchange="handleTeacherVideoFile(this)">
+                  <div class="upload-icon">🎬 📱 💻</div>
+                  <h4 id="teacherFileNameLabel" style="font-size: 1rem; color: #ffffff; margin-bottom: 4px;">Tap / Click
+                    to Select Video from Mobile Gallery or Laptop</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Supports phone camera recordings, MP4, WebM,
+                    MOV</p>
+                </div>
+                <!-- Local File Live Preview Player -->
+                <div id="teacherFilePreviewWrap" style="display: none; margin-top: 14px;">
+                  <video id="teacherFilePreviewVideo" controls class="native-video-player"></video>
+                </div>
+              </div>
+
+              <!-- Source 2: YouTube / Link -->
+              <div id="teacherLinkSourceBlock" style="display: none;">
+                <div class="form-group">
+                  <label>Video URL / Embed Link (YouTube or Cloud Stream)</label>
+                  <input type="url" class="form-control" id="uploadVideoUrl"
+                    placeholder="https://www.youtube.com/embed/..." value="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 16px;">
+                <label>Lecture Duration & Instructions</label>
+                <input type="text" class="form-control" id="uploadVideoDuration"
+                  placeholder="e.g. 45 min • Watch before Thursday lab" required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <span>Publish Lecture Video to Students</span>
+              </button>
+            </form>
+
+            <!-- Teacher Published Videos List & Delete Manager -->
+            <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border-light);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <h4 style="font-size: 1.15rem; font-weight: 800; color: #ffffff; margin: 0;">
+                    📹 Published Class Lecture Videos (ڤیدیۆ بڵاوکراوەکانی وانەکانت)
+                  </h4>
+                  <p style="color: var(--text-muted); font-size: 0.82rem; margin: 4px 0 0;">
+                    Review lecture videos across your assigned classes. You can preview or permanently delete any
+                    mistakenly uploaded videos.
+                  </p>
+                </div>
+                <span class="meta-pill" id="teacherUploadedVideosCountBadge"
+                  style="border-color: #ffffff; color: #ffffff;">0 Videos</span>
+              </div>
+
+              <div id="teacherUploadedVideosListContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tab 3: Enrolled Students & Direct Messages -->
+        <div class="tab-pane" id="paneTeacherRoster" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin: 0;" data-i18n="rosterTitle">
+                  Enrolled Students in Your Classes & Direct Messaging
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 4px 0 0;" data-i18n="rosterSubtitle">
+                  Review student names and click "Send Direct Message" to send a private notice to that specific
+                  student.
+                </p>
+              </div>
+              <span class="meta-pill" id="teacherRosterCountBadge" style="border-color: #ffffff; color: #ffffff;">0
+                Students</span>
+            </div>
+
+            <!-- Live Search Bar for Teacher Roster -->
+            <div style="margin-bottom: 16px;">
+              <input type="text" id="teacherRosterSearchInput" class="form-control"
+                placeholder="🔍 Search enrolled students by name, ID, or class... (گەڕان بەدوای ناوی قوتابی، ناسنامە یان پۆل)"
+                oninput="handleTeacherRosterSearch(this.value)"
+                style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-light); padding: 10px 16px; border-radius: var(--radius-md);">
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="student-roster-table">
+                <thead>
+                  <tr>
+                    <th>Student Name (ناو)</th>
+                    <th>Student ID (ناسنامە)</th>
+                    <th>Department / Stage (بەش و قۆناغ)</th>
+                    <th>Enrolled Class (پۆل)</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="teacherStudentsRosterBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tab 4: Broadcast Message to All Students -->
+        <div class="tab-pane" id="paneTeacherBroadcast" style="display: none;">
+          <div class="glass-panel" style="padding: 32px; max-width: 760px; margin: 0 auto;">
+            <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;" data-i18n="broadcastTitle">
+              📢 Broadcast General Message to All Students
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;" data-i18n="broadcastSubtitle">
+              Send an urgent notice, schedule change, or assignment reminder simultaneously to all students enrolled
+              across your classes.
+            </p>
+
+            <form id="teacherBroadcastForm" onsubmit="handleTeacherBroadcast(event)">
+              <div class="form-group">
+                <label>Broadcast Subject</label>
+                <input type="text" class="form-control" id="broadcastSubject"
+                  placeholder="e.g. Midterm Examination Schedule Announcement" required>
+              </div>
+              <div class="form-group">
+                <label>General Message Content</label>
+                <textarea class="form-control" id="broadcastContent" rows="4"
+                  placeholder="Type your general announcement here..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <span>Send to All Enrolled Students</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Teacher Tab 5: Post & Manage Jobs -->
+        <div class="tab-pane" id="paneTeacherJobs" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  💼 Share Career & Internship Opportunities with Students
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Post job openings, internships, or training opportunities for your students or college-wide.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openPostJobModal()">
+                + Post Job Opportunity (+ دانانی هەلی کار)
+              </button>
+            </div>
+            <div id="teacherJobsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tab 6: Course Materials & PDFs -->
+        <div class="tab-pane" id="paneTeacherMaterials" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  📑 Course Study Materials, Lecture Notes & PDFs
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Upload lecture notes, presentation slides, homework tasks, or reference handbooks for your enrolled
+                  classes.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openUploadMaterialModal()">
+                + Upload Course Material (+ دانانی مەلزەمە)
+              </button>
+            </div>
+            <div id="teacherMaterialsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. MASTER ADMIN DASHBOARD (Only visible to logged-in Admin) -->
+      <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Admin Banner -->
+        <div class="admin-hero-banner glass-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 18px;">
+              <div class="corner-avatar"
+                style="width: 68px; height: 68px; font-size: 1.8rem; background: #ffffff; color: #000000; font-weight: 800;">
+                👑
+              </div>
+              <div>
+                <h2 style="font-size: 1.7rem; font-weight: 800; color: #ffffff;" data-i18n="adminWelcome">C.I.S Central
+                  Administration Hub</h2>
+                <p style="color: #ffffff; font-size: 0.92rem; font-weight: 600;">System Administrator Oversight (Full
+                  Master Access)</p>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logoutAnyUser()">
+              <span data-i18n="btnLogout">Exit Admin Portal</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Admin KPI Summary Cards -->
+        <div class="admin-kpi-grid">
+          <div class="glass-panel kpi-card">
+            <h3 id="adminKpiDepts">6</h3>
+            <p>Active 3-Year Programs</p>
+          </div>
+          <div class="glass-panel kpi-card">
+            <h3 id="adminKpiTotalAccounts">1</h3>
+            <p>Total User Accounts</p>
+          </div>
+          <div class="glass-panel kpi-card">
+            <h3 id="adminKpiStudents">0</h3>
+            <p>Created Student Accounts</p>
+          </div>
+          <div class="glass-panel kpi-card">
+            <h3 id="adminKpiTeachers">0</h3>
+            <p>Created Faculty Accounts</p>
+          </div>
+        </div>
+
+        <!-- Admin Tabs -->
+        <div class="dashboard-tabs">
+          <button class="dash-tab-btn active" id="tabAdminAccounts" onclick="switchAdminTab('accounts', this)">
+            <span>👥</span> <span>User Accounts Manager (بەڕێوەبردنی ئەکاونتەکان) (<span
+                id="adminAccountsBadge">1</span>)</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminJobs" onclick="switchAdminTab('jobs', this)">
+            <span>💼</span> <span>Job Opportunities (دانانی هەلی کار) (<span id="adminJobsBadge">0</span>)</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminMedia" onclick="switchAdminTab('media', this)">
+            <span>🎬</span> <span>Manage Public Campus Videos & Bulletins</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminApplications" onclick="switchAdminTab('applications', this)">
+            <span>📝</span> <span>Prospective Student Applications (<span id="adminAppsBadge">0</span>)</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminOverview" onclick="switchAdminTab('overview', this)">
+            <span>🏛️</span> <span>Academic Departments & Classes</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminMaterials" onclick="switchAdminTab('materials', this)">
+            <span>📚</span> <span>Learning Materials (مەلزەمەکان) (<span id="adminMaterialsBadge">4</span>)</span>
+          </button>
+          <button class="dash-tab-btn" id="tabAdminSecurity" onclick="switchAdminTab('security', this)">
+            <span>🛡️</span> <span>Cyber Security & Domain (ئاسایش و دۆمەین)</span>
+          </button>
+        </div>
+
+        <!-- Admin Tab 1: User Accounts Manager -->
+        <div class="tab-pane" id="paneAdminAccounts">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  👥 User Accounts & Roles Management
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Create official accounts for Students, Teachers, and Admins. Copy their unique IDs to distribute so
+                  they can log in.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openAdminCreateUserModal()">
+                + Create New Account (+ دروستکردنی ئەکاونت)
+              </button>
+            </div>
+
+            <!-- Role Filter Bar -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;" id="adminAccFilterBar">
+              <button type="button" class="filter-btn active" onclick="filterAdminAccounts('all', this)">All Accounts
+                (هەموو)</button>
+              <button type="button" class="filter-btn" onclick="filterAdminAccounts('student', this)">🎓 Students
+                (قوتابیان)</button>
+              <button type="button" class="filter-btn" onclick="filterAdminAccounts('teacher', this)">👨‍🏫 Teachers
+                (مامۆستایان)</button>
+              <button type="button" class="filter-btn" onclick="filterAdminAccounts('admin', this)">👑 Admins
+                (ئەدمینەکان)</button>
+            </div>
+
+            <!-- Live Search Bar for Admin User Accounts -->
+            <div style="margin-bottom: 20px;">
+              <input type="text" id="adminAccountsSearchInput" class="form-control"
+                placeholder="🔍 Search accounts by name, ID, role, or department... (گەڕان لەناو هەژمارەکان)"
+                oninput="handleAdminAccountsSearch(this.value)"
+                style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-light); padding: 10px 16px; border-radius: var(--radius-md);">
+            </div>
+
+            <div id="adminAccountsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: Job Opportunities Manager -->
+        <div class="tab-pane" id="paneAdminJobs" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  💼 Student Career & Job Postings Hub (هەلی کار)
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Manage job vacancies, internships, and corporate partnerships across all 3-year programs.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openPostJobModal()">
+                + Post New Job (+ دانانی هەلی کاری نوێ)
+              </button>
+            </div>
+            <div id="adminJobsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: Manage Public Videos -->
+        <div class="tab-pane" id="paneAdminMedia" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: #ffffff;">Public Homepage Videos Manager</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Only admins can add, update, or remove videos
+                  displayed to public visitors.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openAddPublicVideoModal()">
+                + Add Public Video
+              </button>
+            </div>
+
+            <div id="adminPublicVideosList">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 3: Prospective Applications -->
+        <div class="tab-pane" id="paneAdminApplications" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 16px;">Prospective Student
+              Program Applications</h3>
+            <div style="overflow-x: auto;">
+              <table class="student-roster-table">
+                <thead>
+                  <tr>
+                    <th>Applicant Name</th>
+                    <th>Desired Department</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminApplicationsTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 4: Department & Classes Manager -->
+        <div class="tab-pane" id="paneAdminOverview" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  🏛️ All Academic Departments & Classes Manager
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Admin oversight to add new 3-year programs, update existing department info, and customize class
+                  lessons.
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="openAdminClassModal(null)">
+                  + Create New Class (وانەی نوێ)
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="openAdminDeptModal()">
+                  + Add New 3-Year Department (زیادکردنی بەش)
+                </button>
+              </div>
+            </div>
+
+            <div id="adminDepartmentsListSummary">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 5: Course Materials & Learning Repository -->
+        <div class="tab-pane" id="paneAdminMaterials" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">
+                  📚 Central College Materials & Syllabus Repository (سەرچاوە و مەلزەمەکان)
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">
+                  Admin oversight of all syllabus notes, lecture documents, slides, and study handbooks uploaded across
+                  all departments.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openUploadMaterialModal()">
+                + Upload Official Material (+ دانانی ڤایل)
+              </button>
+            </div>
+            <div id="adminMaterialsListContainer">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 7: Cyber Security & Domain Control Hub -->
+        <div class="tab-pane" id="paneAdminSecurity" style="display: none;">
+          <div class="glass-panel" style="padding: 28px;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                  <span class="meta-pill" style="border-color: #ffffff; color: #ffffff; font-weight: 700;">PROD-DOMAIN
+                    READY</span>
+                  <span class="badge-verified">✓ 100% Security Hardened</span>
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin: 0;">
+                  🛡️ Cyber Security, Anti-Tamper & Domain Control
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin: 4px 0 0;">
+                  Enterprise defense configuration, cryptographic session integrity, anti-brute-force shielding, and
+                  live domain settings.
+                </p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="renderAdminSecurityHub()">
+                🔄 Refresh Security State
+              </button>
+            </div>
+
+            <!-- 5 Security Defense Pillars Grid -->
+            <div
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px;">
+              <div
+                style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 1.3rem;">🛡️</span>
+                  <span
+                    style="font-size: 0.72rem; color: #ffffff; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 12px; font-weight: 700;">ENFORCED</span>
+                </div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">CSP Shield</h4>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                  Content-Security-Policy blocks unauthorized scripts, malicious iframes, and untrusted sources.
+                </p>
+              </div>
+
+              <div
+                style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 1.3rem;">🔑</span>
+                  <span
+                    style="font-size: 0.72rem; color: #ffffff; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 12px; font-weight: 700;">SHA-256
+                    HMAC</span>
+                </div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Anti-Tamper
+                  Sessions</h4>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                  DevTools localStorage forgery (e.g. self-promoting to admin) is detected and auto-terminated.
+                </p>
+              </div>
+
+              <div
+                style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 1.3rem;">⏱️</span>
+                  <span
+                    style="font-size: 0.72rem; color: #ffffff; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 12px; font-weight: 700;">ACTIVE</span>
+                </div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Anti-Brute Force
+                </h4>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                  Locks login for 60 seconds after 5 consecutive failures, stopping credential stuffing.
+                </p>
+              </div>
+
+              <div
+                style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 1.3rem;">🔒</span>
+                  <span
+                    style="font-size: 0.72rem; color: #ffffff; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 12px; font-weight: 700;">HSTS
+                    PRELOAD</span>
+                </div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">HTTPS & SSL Domain
+                </h4>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                  .htaccess, Cloudflare, and Vercel configurations prepared with HTTP Strict Transport Security.
+                </p>
+              </div>
+            </div>
+
+            <!-- Two Column Layout: Passcode Manager + Live Audit Log -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px;">
+              <!-- Left: Admin Passcode Manager -->
+              <div
+                style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 22px;">
+                <h4 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 8px;">
+                  🔐 Change Master Admin Passcode
+                </h4>
+                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 16px;">
+                  Change your administrator password. Once saved, only you with this new passcode can access the Master
+                  Admin Hub.
+                </p>
+
+                <form onsubmit="handleUpdateAdminPasscode(event)">
+                  <div class="form-group">
+                    <label style="font-size: 0.84rem;">Current Passcode (وشەی نهێنی ئێستا)</label>
+                    <input type="password" class="form-control" id="secCurrentPass"
+                      placeholder="Enter current passcode..." required>
+                  </div>
+                  <div class="form-group">
+                    <label style="font-size: 0.84rem;">New Passcode (وشەی نهێنی نوێ - لانیکەم ٦ پیت)</label>
+                    <input type="password" class="form-control" id="secNewPass"
+                      placeholder="Enter new strong passcode..." required minlength="6">
+                  </div>
+                  <div class="form-group">
+                    <label style="font-size: 0.84rem;">Confirm New Passcode (دووبارەکردنەوەی وشەی نهێنی نوێ)</label>
+                    <input type="password" class="form-control" id="secConfirmPass"
+                      placeholder="Confirm new passcode..." required minlength="6">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">
+                    <span>🔒 Update & Hash New Passcode</span>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Right: Live Security Audit Logs -->
+              <div
+                style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 22px; display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0;">
+                    📜 Security Audit & Event Log
+                  </h4>
+                  <button type="button" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.75rem;"
+                    onclick="clearAuditLog()">
+                    Clear Log
+                  </button>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">
+                  Real-time tamper detections, rate limit triggers, and login events.
+                </p>
+                <div id="adminSecurityAuditContainer"
+                  style="flex: 1; max-height: 290px; overflow-y: auto; background: #000000; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 12px; font-family: monospace; font-size: 0.78rem;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Domain Deployment Guide & Production Checklist -->
+            <div
+              style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 22px; margin-bottom: 24px;">
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 12px;">
+                🌐 Domain Deployment & Server Configuration Checklist
+              </h4>
+              <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; font-size: 0.85rem; color: var(--text-muted);">
+                <div style="border-left: 2px solid #ffffff; padding-left: 12px;">
+                  <strong style="color: #ffffff; display: block; margin-bottom: 4px;">1. Apache / cPanel /
+                    Hostinger:</strong>
+                  The project includes a production <code style="color: #fff;">.htaccess</code> with automated HTTPS
+                  redirect, GZIP compression, and security headers. Upload all files into <code
+                    style="color: #fff;">public_html</code>.
+                </div>
+                <div style="border-left: 2px solid #ffffff; padding-left: 12px;">
+                  <strong style="color: #ffffff; display: block; margin-bottom: 4px;">2. Cloudflare & Vercel:</strong>
+                  Included <code style="color: #fff;">_headers</code> and <code style="color: #fff;">vercel.json</code>
+                  ready for zero-config deployment on Cloudflare Pages or Vercel Edge.
+                </div>
+                <div style="border-left: 2px solid #ffffff; padding-left: 12px;">
+                  <strong style="color: #ffffff; display: block; margin-bottom: 4px;">3. SEO & Crawlers:</strong>
+                  <code style="color: #fff;">robots.txt</code> and <code style="color: #fff;">sitemap.xml</code> are
+                  prepared to index college departments and public media while guarding portal pages.
+                </div>
+              </div>
+            </div>
+
+            <!-- Emergency Actions & Backup -->
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+              <div>
+                <strong style="color: #ffffff; font-size: 0.95rem; display: block;">Database Backup & Emergency
+                  Flush</strong>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">Export complete college records or terminate
+                  all active client sessions immediately.</span>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="exportEncryptedDatabaseBackup()">
+                  📥 Export Database JSON
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="clearAllSessionsAndFlush()"
+                  style="border-color: rgba(255,255,255,0.4);">
+                  🔒 Flush All Sessions
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end #authenticatedPortalView -->
+
+  <!-- ==========================================================================
+       MODALS:
+       1. Login Modal (Student / Teacher / Admin)
+       2. Prospective Student Program Enrollment Modal
+       3. Teacher Direct Message to Student Modal
+       4. Admin Add Public Video Modal
+       5. Video Player Modal
+       ========================================================================== -->
+
+  <!-- 1. Login Modal -->
+  <div class="modal-overlay" id="portalLoginModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="closeModal('portalLoginModal')" aria-label="Close Modal">✕</button>
+
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="assets/images/cis_logo.jpg" alt="CIS Logo"
+          style="width: 64px; height: 64px; border-radius: 14px; background: #fff; padding: 2px; margin-bottom: 12px; box-shadow: 0 0 20px var(--primary-glow);">
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #ffffff;" data-i18n="loginModalTitle">CIS Portal Login
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;" data-i18n="loginModalSubtitle">Select your designated
+          account type</p>
+      </div>
+
+      <!-- 3-Role Switcher Tabs: Student / Teacher / Admin -->
+      <div class="role-toggle-bar">
+        <button type="button" class="role-tab-btn active student-tab" id="modalTabStudent"
+          onclick="switchLoginModalRole('student')">
+          🎓 <span data-i18n="tabRoleStudent">Student (قوتابی)</span>
+        </button>
+        <button type="button" class="role-tab-btn" id="modalTabTeacher" onclick="switchLoginModalRole('teacher')">
+          👨‍🏫 <span data-i18n="tabRoleTeacher">Teacher (مامۆستا)</span>
+        </button>
+        <button type="button" class="role-tab-btn" id="modalTabAdmin" onclick="switchLoginModalRole('admin')">
+          👑 <span data-i18n="tabRoleAdmin">Admin (ئەدمین)</span>
+        </button>
+      </div>
+
+      <!-- Form 1: Student Login -->
+      <div id="modalStudentFormView">
+        <form onsubmit="handleModalStudentLogin(event)">
+          <div class="form-group">
+            <label data-i18n="lblEnterStudentId">Enter Your Official Student ID (ناسنامەی قوتابی)</label>
+            <input type="text" class="form-control" id="modalStudentIdInput" placeholder="e.g. CIS-2024-101" required
+              style="font-family: monospace; font-size: 1.05rem;">
+          </div>
+          <div class="form-group" style="margin-top: 14px;">
+            <label>Student Password (وشەی نهێنی قوتابی)</label>
+            <div style="position: relative;">
+              <input type="password" class="form-control" id="modalStudentPasswordInput"
+                placeholder="Enter your password..." required style="padding-right: 42px; font-size: 1rem;">
+              <button type="button" class="pass-visibility-toggle"
+                onclick="togglePassVisibility('modalStudentPasswordInput', this)" title="Show/Hide Password">
+                👁️
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 18px; margin-bottom: 20px;">
+            <span data-i18n="btnUnlockStudent">Unlock Student Portal</span>
+          </button>
+        </form>
+
+        <div class="demo-ids-helper"
+          style="padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+          <div style="font-size: 0.85rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;">
+            ℹ️ Official Student ID & Password Required (ناسنامە و وشەی نهێنی فەرمی)
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+            Please enter your official Student ID and Password given to you by the College Administrator. (تکایە ناسنامە
+            و وشەی نهێنی فەرمی قوتابی بنووسە کە لەلایەن ئەدمینەوە پێت دراوە).
+          </p>
+        </div>
+      </div>
+
+      <!-- Form 2: Teacher Login -->
+      <div id="modalTeacherFormView" style="display: none;">
+        <form onsubmit="handleModalTeacherLogin(event)">
+          <div class="form-group">
+            <label data-i18n="lblEnterTeacherId">Enter Your Faculty / Teacher ID (ناسنامەی مامۆستا)</label>
+            <input type="text" class="form-control" id="modalTeacherIdInput" placeholder="e.g. CIS-TEA-101" required
+              style="font-family: monospace; font-size: 1.05rem;">
+          </div>
+          <div class="form-group" style="margin-top: 14px;">
+            <label>Teacher Password (وشەی نهێنی مامۆستا)</label>
+            <div style="position: relative;">
+              <input type="password" class="form-control" id="modalTeacherPasswordInput"
+                placeholder="Enter your password..." required style="padding-right: 42px; font-size: 1rem;">
+              <button type="button" class="pass-visibility-toggle"
+                onclick="togglePassVisibility('modalTeacherPasswordInput', this)" title="Show/Hide Password">
+                👁️
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 18px; margin-bottom: 20px;">
+            <span data-i18n="btnUnlockTeacher">Access Faculty Center</span>
+          </button>
+        </form>
+
+        <div class="demo-ids-helper"
+          style="padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+          <div style="font-size: 0.85rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;">
+            ℹ️ Official Teacher ID & Password Required (ناسنامە و وشەی نهێنی مامۆستا)
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+            Please enter your official Teacher ID and Password issued by the College Administrator. (تکایە ناسنامە و
+            وشەی نهێنی مامۆستا بنووسە).
+          </p>
+        </div>
+      </div>
+
+      <!-- Form 3: Admin Login (Hardened with Master Passcode & Anti-Brute-Force Shield) -->
+      <div id="modalAdminFormView" style="display: none;">
+        <form id="modalAdminLoginForm" onsubmit="handleModalAdminLogin(event)">
+          <div class="form-group">
+            <label data-i18n="lblAdminId">Admin ID / Key (ناسنامەی ئەدمین)</label>
+            <input type="text" class="form-control" id="modalAdminIdInput" placeholder="CIS-ADM-01" value="CIS-ADM-01"
+              required style="font-family: monospace; font-size: 1.05rem;">
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label style="margin-bottom: 0;" data-i18n="lblAdminPass">Master Security Passcode (وشەی نهێنی
+                ئەدمین)</label>
+              <span class="meta-pill" style="font-size: 0.7rem; border-color: #ffffff; color: #ffffff;">SHA-256
+                Gated</span>
+            </div>
+            <div style="position: relative;">
+              <input type="password" class="form-control" id="modalAdminPasswordInput"
+                placeholder="Enter Admin Passcode..." required
+                style="font-family: monospace; font-size: 1.05rem; padding-right: 44px;"
+                autocomplete="current-password">
+              <button type="button" onclick="toggleAdminPassVisibility()" id="btnToggleAdminPass"
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #ffffff; cursor: pointer; font-size: 1.15rem; padding: 4px;"
+                title="Show / Hide Passcode">
+                👁️
+              </button>
+            </div>
+            <div
+              style="margin-top: 6px; font-size: 0.78rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px;">
+              <span>🔒 Encrypted Master Authentication</span>
+              <span style="color: var(--text-dim);">(Authorized Personnel Only)</span>
+            </div>
+          </div>
+
+          <!-- Anti-Brute-Force Lockout Banner -->
+          <div id="adminLoginLockoutBanner"
+            style="display: none; padding: 12px 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: var(--radius-md); color: #ffffff; font-size: 0.84rem; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.2rem;">🛡️</span>
+              <span id="adminLockoutText">Rate limit triggered. Please wait...</span>
+            </div>
+          </div>
+
+          <button type="submit" id="modalAdminSubmitBtn" class="btn btn-primary"
+            style="width: 100%; margin-bottom: 20px;">
+            <span data-i18n="btnAdminSignIn">Sign In with Security Verification</span>
+          </button>
+        </form>
+
+        <div class="demo-ids-helper"
+          style="padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+          <div style="font-size: 0.85rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;">
+            🔒 Domain Protected Area (ناوچەی پارێزراوی دۆمەین)
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">
+            Central Administrator identity is cryptographically tied to Zhiyar Hemn (CIS-ADM-01). Unauthorized access
+            attempts are monitored and rate-limited.
+          </p>
+          <div class="demo-ids-pills">
+            <button type="button" class="demo-id-chip" onclick="quickFillAdminCredentials()">
+              <strong>CIS-ADM-01</strong> (Fill Admin ID)
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. Prospective Student Program Enrollment Modal -->
+  <div class="modal-overlay" id="enrollProgramModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="closeModal('enrollProgramModal')">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        📝 Apply & Enroll in 3-Year Program
+      </h3>
+      <p style="color: var(--primary); font-size: 0.95rem; font-weight: 600; margin-bottom: 20px;" id="enrollDeptTitle">
+        Department of Computer Science (IT)
+      </p>
+
+      <form id="enrollmentForm" onsubmit="handleEnrollmentSubmit(event)">
+        <input type="hidden" id="enrollDeptId">
+        <div class="form-group">
+          <label>Student Full Name (ناوی سیانی)</label>
+          <input type="text" class="form-control" id="enrollStudentName" placeholder="e.g. Darian Shwan Azad" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Phone Number / WhatsApp</label>
+            <input type="tel" class="form-control" id="enrollPhone" placeholder="+964 750 000 0000" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" id="enrollEmail" placeholder="student@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes / Questions (پەیام یان تێبینی)</label>
+          <textarea class="form-control" id="enrollNotes" rows="2"
+            placeholder="Mention morning or evening shift preference..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('enrollProgramModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Submit Application to Admin</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Teacher Direct Message to Student Modal -->
+  <div class="modal-overlay" id="teacherDirectMsgModal">
+    <div class="modal-box" style="max-width: 580px;">
+      <button class="modal-close-btn" onclick="closeModal('teacherDirectMsgModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        ✉️ Send Direct Message to Student
+      </h3>
+      <p style="color: var(--primary); font-size: 0.92rem; font-weight: 600; margin-bottom: 20px;"
+        id="directMsgTargetStudent">
+        Target Student
+      </p>
+
+      <form onsubmit="handleSendDirectStudentMsg(event)">
+        <input type="hidden" id="directMsgStudentId">
+        <div class="form-group">
+          <label>Message Content</label>
+          <textarea class="form-control" id="directMsgText" rows="4"
+            placeholder="Write specific instruction, feedback, or meeting request..." required></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('teacherDirectMsgModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Send Direct Message</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Admin Add Public Video Modal -->
+  <div class="modal-overlay" id="adminAddVideoModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('adminAddVideoModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        👑 Admin: Publish Public Video to Homepage
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        This video will be displayed to all public visitors on the college homepage media section.
+      </p>
+
+      <form onsubmit="handleAdminAddVideo(event)">
+        <div class="form-group">
+          <label>Video Title (English)</label>
+          <input type="text" class="form-control" id="adminVidTitle"
+            placeholder="e.g. CIS Annual Graduation Ceremony & Tech Expo" required>
+        </div>
+        <div class="form-group">
+          <label>Video Title (Kurdish)</label>
+          <input type="text" class="form-control" id="adminVidTitleKu"
+            placeholder="e.g. ئاهەنگی دەرچوونی ساڵانەی کۆلێژی CIS" required>
+        </div>
+
+        <!-- Video Source Switcher for Admin: Mobile/Laptop File OR Link -->
+        <div class="video-source-switcher">
+          <button type="button" class="source-tab-btn active" id="adminSourceTabFile"
+            onclick="switchAdminVideoSource('file')">
+            📱 💻 Upload from Mobile / Laptop (فایلی ڤیدیۆ)
+          </button>
+          <button type="button" class="source-tab-btn" id="adminSourceTabLink" onclick="switchAdminVideoSource('link')">
+            🔗 YouTube / Web Link (لینک)
+          </button>
+        </div>
+
+        <!-- Source 1: Local File from Phone or Laptop -->
+        <div id="adminFileSourceBlock">
+          <div class="file-upload-dropzone" onclick="document.getElementById('adminVideoFileInput').click()">
+            <input type="file" id="adminVideoFileInput" accept="video/mp4,video/webm,video/ogg,video/quicktime,video/*"
+              style="display: none;" onchange="handleAdminVideoFile(this)">
+            <div class="upload-icon">📹 📱 💻</div>
+            <h4 id="adminFileNameLabel" style="font-size: 1rem; color: #ffffff; margin-bottom: 4px;">Choose Video from
+              Phone Gallery or Laptop</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Select video file directly from your mobile or
+              laptop</p>
+          </div>
+          <!-- Admin Local File Live Preview Player -->
+          <div id="adminFilePreviewWrap" style="display: none; margin-top: 14px;">
+            <video id="adminFilePreviewVideo" controls class="native-video-player"></video>
+          </div>
+        </div>
+
+        <!-- Source 2: YouTube / Link -->
+        <div id="adminLinkSourceBlock" style="display: none;">
+          <div class="form-group">
+            <label>YouTube Embed Link</label>
+            <input type="url" class="form-control" id="adminVidUrl" placeholder="https://www.youtube.com/embed/..."
+              value="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 16px;">
+          <label>Short Description</label>
+          <textarea class="form-control" id="adminVidDesc" rows="2"
+            placeholder="Describe the bulletin or video content..." required></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('adminAddVideoModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Publish to Public Homepage</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Admin Add / Edit Department Modal -->
+  <div class="modal-overlay" id="adminDeptModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('adminDeptModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;" id="adminDeptModalTitle">
+        🏛️ Add / Edit 3-Year Academic Department
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Departments appear in the academic programs catalog, public enrollment, and curriculum management.
+      </p>
+
+      <form id="adminDeptForm" onsubmit="handleAdminDeptSubmit(event)">
+        <input type="hidden" id="adminDeptEditId" value="">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Department Code (کۆدی بەش)</label>
+            <input type="text" class="form-control" id="adminDeptCode" placeholder="e.g. AI-ENG" required
+              style="font-family: monospace;">
+          </div>
+          <div class="form-group">
+            <label>Duration / Period (ماوەی خوێندن)</label>
+            <input type="text" class="form-control" id="adminDeptDuration" placeholder="e.g. 3-Year Program"
+              value="3-Year Program" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Department Name (English)</label>
+            <input type="text" class="form-control" id="adminDeptNameEn" placeholder="e.g. Artificial Intelligence"
+              required>
+          </div>
+          <div class="form-group">
+            <label>Department Name (Kurdish - ناوی بەش بە کوردی)</label>
+            <input type="text" class="form-control" id="adminDeptNameKu" placeholder="e.g. زیرەکی دەستکرد" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Department Chair / Head (بەڕێوەبەری بەش)</label>
+            <input type="text" class="form-control" id="adminDeptHead" placeholder="e.g. Dr. Halgurd Rostam" required>
+          </div>
+          <div class="form-group">
+            <label>Specialty Badge / Focus (تایبەتمەندی)</label>
+            <input type="text" class="form-control" id="adminDeptBadge" placeholder="e.g. Machine Learning & Robotics"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description (English)</label>
+          <textarea class="form-control" id="adminDeptDescEn" rows="2" placeholder="Brief program summary..."
+            required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Description (Kurdish - کورتەی بەشەکە بە کوردی)</label>
+          <textarea class="form-control" id="adminDeptDescKu" rows="2"
+            placeholder="کورتەیەک دەربارەی گرنگی و وانەکانی ئەم بەشە..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 14px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('adminDeptModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="adminDeptSubmitBtn">
+            <span>Save Department</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Admin Manage Classes / Subjects Modal for a Department -->
+  <div class="modal-overlay" id="adminManageClassesModal">
+    <div class="modal-box" style="max-width: 780px;">
+      <button class="modal-close-btn" onclick="closeModal('adminManageClassesModal')">✕</button>
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff;" id="adminManageClassesDeptTitle">
+            📚 Department Classes & Curriculum
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem;" id="adminManageClassesDeptSubtitle">
+            Add, update, or remove subjects and courses taught in this department.
+          </p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openAdminClassModal(currentManagingDeptId)">
+          + Add New Class / Subject (وانەی نوێ)
+        </button>
+      </div>
+
+      <div id="adminDeptClassesListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Admin Add / Edit Class / Subject Modal -->
+  <div class="modal-overlay" id="adminClassModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('adminClassModal')">✕</button>
+      <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;" id="adminClassModalTitle">
+        📖 Add / Edit Class Subject
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Create or edit a class course, specify schedule, and assign to a faculty lecturer.
+      </p>
+
+      <form id="adminClassForm" onsubmit="handleAdminClassSubmit(event)">
+        <input type="hidden" id="adminClassTargetDeptId" value="">
+        <input type="hidden" id="adminClassEditCode" value="">
+        <input type="hidden" id="adminClassTeacherId" value="">
+
+        <!-- Department selector (active when creating from global button) -->
+        <div class="form-group" id="adminClassDeptSelectGroup">
+          <label>Academic Department (بەشی کۆلێژ)</label>
+          <select class="form-control" id="adminClassDeptSelect">
+            <!-- Dynamically populated from active departments -->
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Class Code (کۆدی وانە)</label>
+            <input type="text" class="form-control" id="adminClassCode" placeholder="e.g. CS-301" required
+              style="font-family: monospace; font-weight: 700;">
+          </div>
+          <div class="form-group">
+            <label>Stage / Year (قۆناغ)</label>
+            <input type="text" class="form-control" id="adminClassYear" placeholder="e.g. Year 1" value="Year 1"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Subject / Class Title (English)</label>
+          <input type="text" class="form-control" id="adminClassTitleEn"
+            placeholder="e.g. Advanced Cloud Computing & Networks" required>
+        </div>
+        <div class="form-group">
+          <label>Subject Title (Kurdish - ناوی وانەکە بە کوردی)</label>
+          <input type="text" class="form-control" id="adminClassTitleKu" placeholder="e.g. تۆڕە هەورییە پێشکەوتووەکان"
+            required>
+        </div>
+
+        <!-- Teacher Assignment -->
+        <div class="form-group">
+          <label>Assign to Faculty Teacher (مامۆستای وانەبێژ بۆ ئەم پۆلە)</label>
+          <select class="form-control" id="adminClassTeacherSelect"
+            onchange="handleAdminClassTeacherSelectChange(this)">
+            <!-- Populated with registered teachers or external -->
+          </select>
+          <input type="text" class="form-control" id="adminClassLecturer" placeholder="e.g. Prof. Dr. Alan Rostam"
+            style="margin-top: 8px; display: none;" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Room / Lab (هۆڵ یان تاقیگە)</label>
+            <input type="text" class="form-control" id="adminClassRoom" placeholder="e.g. Tech Lab 102" required>
+          </div>
+          <div class="form-group">
+            <label>Weekly Schedule (کاتی وانە لە هەفتەدا)</label>
+            <input type="text" class="form-control" id="adminClassSchedule" placeholder="e.g. Sun & Tue 10:30 AM"
+              required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 14px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('adminClassModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Save Class / Subject (تۆمارکردنی وانە)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7B. Admin Class Students & Enrollment Roster Modal -->
+  <div class="modal-overlay" id="adminClassStudentsModal">
+    <div class="modal-box" style="max-width: 820px;">
+      <button class="modal-close-btn" onclick="closeModal('adminClassStudentsModal')">✕</button>
+
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="meta-pill" id="adminClassStudentsBadge"
+              style="border-color: #ffffff; color: #ffffff; font-weight: 700; font-size: 0.85rem;">CS-101</span>
+            <span id="adminClassStudentsLecturer" style="font-size: 0.85rem; color: #a1a1aa;">👨‍🏫 Lecturer</span>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0;" id="adminClassStudentsTitle">
+            Class Student Roster
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;" id="adminClassStudentsSubtitle">
+            Enroll students into this class, remove them, or transfer them to another course.
+          </p>
+        </div>
+
+        <button class="btn btn-primary btn-sm" onclick="toggleAdminEnrollStudentBox()">
+          + Enroll Student (تێکردنی قوتابی بۆ پۆل)
+        </button>
+      </div>
+
+      <!-- Quick Enroll Student Box (toggleable) -->
+      <div id="adminQuickEnrollBox"
+        style="display: none; background: rgba(255,255,255,0.04); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 8px;">
+          ➕ Add Registered Student to this Class (تێکردنی قوتابی تۆمارکراو)
+        </h4>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <select class="form-control" id="adminEnrollStudentSelect" style="flex: 1; min-width: 220px;">
+            <!-- Populated with students not in this class -->
+          </select>
+          <button type="button" class="btn btn-primary btn-sm" onclick="handleAdminEnrollStudentToCurrentClass()">
+            Confirm Enroll (تێکردن)
+          </button>
+        </div>
+      </div>
+
+      <!-- Students Table Container -->
+      <div id="adminClassStudentsListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7C. Admin Transfer Student Between Classes Modal -->
+  <div class="modal-overlay" id="adminTransferStudentModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="closeModal('adminTransferStudentModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        🔄 Transfer Student Between Classes (گواستنەوەی قوتابی)
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Move this student from their current class to another course or department.
+      </p>
+
+      <form id="adminTransferStudentForm" onsubmit="handleAdminTransferStudentSubmit(event)">
+        <input type="hidden" id="transferStudentId">
+        <input type="hidden" id="transferSourceClassCode">
+
+        <div
+          style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px; margin-bottom: 18px;">
+          <div style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 4px;">Selected Student (قوتابی):</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #ffffff;" id="transferStudentNameDisplay">Zhika
+            (CIS-STU-101)</div>
+          <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 4px;" id="transferSourceClassDisplay">
+            Current Class: CS-101</div>
+        </div>
+
+        <div class="form-group">
+          <label>Destination Class (وانەی مەبەست / پۆلی نوێ)</label>
+          <select class="form-control" id="transferDestinationClassSelect" required>
+            <!-- All available classes -->
+          </select>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 14px;">
+          <input type="checkbox" id="transferUpdateDeptCheckbox" checked
+            style="width: 18px; height: 18px; margin-top: 2px; accent-color: #ffffff; cursor: pointer;">
+          <label for="transferUpdateDeptCheckbox"
+            style="margin: 0; font-size: 0.85rem; color: #a1a1aa; cursor: pointer; line-height: 1.4;">
+            Also update student's registered department to match the new class (ئەگەر وانەکە هی بەشێکی تر بێت، بەشی
+            قوتابییەکەش نوێ بکەرەوە)
+          </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 22px;">
+          <button type="button" class="btn btn-secondary"
+            onclick="closeModal('adminTransferStudentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Confirm Transfer (تەواوکردنی گواستنەوە)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. Admin Create User Account Modal -->
+  <div class="modal-overlay" id="adminCreateUserModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('adminCreateUserModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        👤 Create User Account & Generate Official ID
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Assign a role (Student, Teacher, or Admin). The system will generate their official ID and password to give to
+        them for login.
+      </p>
+
+      <form id="adminCreateUserForm" onsubmit="handleAdminCreateUserSubmit(event)">
+        <!-- Role Selector -->
+        <div class="form-group">
+          <label>Account Role / Permission (ڕۆڵی هەژمار)</label>
+          <div class="role-toggle-bar" style="margin-bottom: 0;">
+            <button type="button" class="role-tab-btn active student-tab" id="createRoleBtnStudent"
+              onclick="selectCreateUserRole('student')">
+              🎓 Student (قوتابی)
+            </button>
+            <button type="button" class="role-tab-btn" id="createRoleBtnTeacher"
+              onclick="selectCreateUserRole('teacher')">
+              👨‍🏫 Teacher (مامۆستا)
+            </button>
+            <button type="button" class="role-tab-btn" id="createRoleBtnAdmin" onclick="selectCreateUserRole('admin')">
+              👑 Admin (ئەدمین)
+            </button>
+          </div>
+          <input type="hidden" id="createUserRoleVal" value="student">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Full Name (English)</label>
+            <input type="text" class="form-control" id="createUserNameEn" placeholder="e.g. Zhiyar" required>
+          </div>
+          <div class="form-group">
+            <label>Full Name (Kurdish - ناوی بە کوردی)</label>
+            <input type="text" class="form-control" id="createUserNameKu" placeholder="e.g. ژیار " required>
+          </div>
+        </div>
+
+        <div class="form-group" id="createUserDeptGroup">
+          <label>Academic Department (بەش)</label>
+          <select class="form-control" id="createUserDeptSelect">
+            <!-- Dynamically populated from active CIS_DATA.departments -->
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group" id="createUserStageOrOfficeGroup">
+            <label id="createUserStageOrOfficeLabel">Stage / Year (قۆناغ)</label>
+            <input type="text" class="form-control" id="createUserStageOrOffice" placeholder="e.g. Year 1"
+              value="Year 1">
+          </div>
+          <div class="form-group">
+            <label>Official Login ID (ناسنامە)</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" class="form-control" id="createUserIdVal" placeholder="e.g. CIS-STU-101" required
+                style="font-family: monospace; font-weight: 700;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="generateNewUserIdForRole()"
+                title="Generate Random ID">
+                🔄
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Password Field (Feature Requested: Both ID and Password required) -->
+        <div class="form-group" style="margin-top: 14px;">
+          <label>Account Password (وشەی نهێنی هەژمار)</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" class="form-control" id="createUserPasswordVal" placeholder="e.g. CisPass@2026" required
+              style="font-family: monospace; font-size: 1rem; letter-spacing: 0.5px;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="generateNewPasswordForUser()"
+              title="Generate Secure Random Password">
+              🔄 Generate (دروستکردنی نهێنی)
+            </button>
+          </div>
+          <small style="color: var(--text-muted); font-size: 0.78rem;">Both the Login ID and this Password will be
+            required for the user to log in.</small>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('adminCreateUserModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Create Account & Save ID & Password</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 9. Account Created Success Modal with 1-Click Copy for ID & Password -->
+  <div class="modal-overlay" id="accountCreatedSuccessModal">
+    <div class="modal-box" style="max-width: 540px; text-align: center;">
+      <button class="modal-close-btn" onclick="closeModal('accountCreatedSuccessModal')">✕</button>
+      <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        Account Successfully Created!
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+        Give these Official credentials to the user so they can log in. (ئەم ناسنامە و وشە نهێنییە بدە بە قوتابی یان
+        مامۆستاکە).
+      </p>
+
+      <div
+        style="background: rgba(255,255,255,0.06); border: 2px dashed rgba(255,255,255,0.4); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; text-align: left;">
+        <div style="margin-bottom: 14px;">
+          <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">
+            Official Login ID (ناسنامە بۆ چوونەژوورەوە)</div>
+          <div
+            style="font-size: 1.6rem; font-weight: 900; color: #ffffff; font-family: monospace; letter-spacing: 1.2px;"
+            id="successModalIdDisplay">
+            CIS-STU-101
+          </div>
+        </div>
+
+        <div style="padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">
+            Account Password (وشەی نهێنی هەژمار)</div>
+          <div
+            style="font-size: 1.35rem; font-weight: 800; color: #34d399; font-family: monospace; letter-spacing: 1px;"
+            id="successModalPasswordDisplay">
+            CisPass@2026
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 12px; font-size: 0.9rem; color: #a1a1aa; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);"
+          id="successModalUserSummary">
+          Zhiyar • Student
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-primary" onclick="copySuccessModalCredentials()">
+          📋 Copy ID & Password (کۆپیکردنی هەردووکی)
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('accountCreatedSuccessModal')">
+          Done (تەواو)
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 10. Post Job Opportunity Modal (For Admin & Teachers) -->
+  <div class="modal-overlay" id="postJobModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('postJobModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        💼 <span id="postJobModalTitle">Post Job Opportunity (دانانی هەلی کار)</span>
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;" id="postJobModalSubtitle">
+        Post a job opening, internship, or company training vacancy for CIS students.
+      </p>
+
+      <form id="postJobForm" onsubmit="handlePostJobSubmit(event)">
+        <div class="form-group">
+          <label>Job Title (ناونیشانی کار) *</label>
+          <input type="text" class="form-control" id="jobFieldTitle"
+            placeholder="e.g. Junior Web Developer / ژمێریاری دەستپێکەر" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Company / Organization (کۆمپانیا یان شوێن) *</label>
+            <input type="text" class="form-control" id="jobFieldCompany" placeholder="e.g. FastPay / Asiacell / Bank"
+              required>
+          </div>
+          <div class="form-group">
+            <label>Target Department (بۆ کام بەش) *</label>
+            <select class="form-control" id="jobFieldDept" required>
+              <option value="all">🌐 All Departments (هەموو بەشەکان)</option>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Job Type (جۆری کار)</label>
+            <select class="form-control" id="jobFieldType">
+              <option value="Full-Time">Full-Time (دەوامی تەواو)</option>
+              <option value="Part-Time">Part-Time (نیوە دەوام)</option>
+              <option value="Internship">Internship / Trainee (ڕاهێنان)</option>
+              <option value="Remote">Remote / Online (ئۆنلاین)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Location (شوێنی کار)</label>
+            <input type="text" class="form-control" id="jobFieldLocation"
+              placeholder="e.g. Sulaymaniyah / Erbil / Remote">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Salary / Compensation (مووچە یان پاداشت)</label>
+          <input type="text" class="form-control" id="jobFieldSalary"
+            placeholder="e.g. $800 - $1,200 / month یان دیاری دەکرێت">
+        </div>
+
+        <div class="form-group">
+          <label>Job Description & Requirements (وەسفی کار و مەرجەکان) *</label>
+          <textarea class="form-control" id="jobFieldDesc" rows="3"
+            placeholder="Explain the responsibilities, skills needed, or requirements..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>How to Apply / Contact (چۆنیەتی پەیوەندی و پێشکەشکردن) *</label>
+          <input type="text" class="form-control" id="jobFieldContact"
+            placeholder="e.g. jobs@company.com or +964 750 ... or Telegram" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('postJobModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Job (بڵاوکردنەوەی کار)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 11. Upload Course Material Modal (For Teachers & Admin) -->
+  <div class="modal-overlay" id="uploadMaterialModal">
+    <div class="modal-box" style="max-width: 640px;">
+      <button class="modal-close-btn" onclick="closeModal('uploadMaterialModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        📚 <span id="uploadMaterialModalTitle">Upload Course Material & Lecture Notes (دانانی مەلزەمە)</span>
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Provide study materials, lecture slides, textbooks, or assignments for students enrolled in this course.
+      </p>
+
+      <form id="uploadMaterialForm" onsubmit="handleUploadMaterialSubmit(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Target Course / Class (وانە) *</label>
+            <select class="form-control" id="materialFieldClass" required>
+              <!-- Populated dynamically based on user role -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Material Category (جۆری فایل) *</label>
+            <select class="form-control" id="materialFieldType" required>
+              <option value="pdf">📕 PDF Lecture Notes (مەلزەمەی وانە)</option>
+              <option value="slides">📑 Presentation Slides (سلایدەکانی وانە)</option>
+              <option value="book">📖 Course Book / Handbook (کتێب و سەرچاوە)</option>
+              <option value="assignment">📝 Homework / Assignment (ئەرکی ماڵەوە)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Material Title (English) *</label>
+          <input type="text" class="form-control" id="materialFieldTitle"
+            placeholder="e.g. Chapter 3 - Object Oriented Programming in JS" required>
+        </div>
+
+        <div class="form-group">
+          <label>Material Title (Kurdish - ناونیشان بە کوردی) *</label>
+          <input type="text" class="form-control" id="materialFieldTitleKu"
+            placeholder="e.g. بەشی ٣ - بەرنامەسازی ئۆبجێکت ئۆریێنتد لە جاڤاسکریپت" required>
+        </div>
+
+        <!-- Dual Upload Source Switcher -->
+        <div class="video-source-switcher" style="margin-bottom: 14px;">
+          <button type="button" class="source-tab-btn active teacher-active-btn" id="matSourceTabFile"
+            onclick="switchMaterialSourceMode('file')">
+            📱 💻 Upload from Mobile / Laptop (فایلی PDF یان مەلزەمە)
+          </button>
+          <button type="button" class="source-tab-btn" id="matSourceTabLink" onclick="switchMaterialSourceMode('link')">
+            🔗 Drive / Cloud Link (لینکی درایڤ یان وێب)
+          </button>
+        </div>
+
+        <!-- Mode 1: Local Device File (PDF, Word, PPTX, TXT) -->
+        <div id="matFileSourceBlock">
+          <div class="file-upload-dropzone teacher-dropzone"
+            onclick="document.getElementById('materialFileInput').click()">
+            <input type="file" id="materialFileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.zip"
+              style="display: none;" onchange="handleMaterialFileInput(this)">
+            <div class="upload-icon">📄 📚 💾</div>
+            <h4 id="materialFileNameLabel" style="font-size: 1rem; color: #ffffff; margin-bottom: 4px;">Tap / Click to
+              Select File from Mobile or Laptop</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Supports PDF documents, PowerPoint slides, Word,
+              Text files</p>
+          </div>
+        </div>
+
+        <!-- Mode 2: Cloud / Drive Link -->
+        <div id="matLinkSourceBlock" style="display: none;">
+          <div class="form-group">
+            <label>Cloud / Drive URL (Google Drive, OneDrive, or Direct PDF Link)</label>
+            <input type="url" class="form-control" id="materialFieldUrl"
+              placeholder="https://drive.google.com/... or https://cis.edu.krd/notes.pdf">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 14px;">
+          <label>Summary / Syllabus Notes (کورتەیەک دەربارەی مەلزەمەکە)</label>
+          <textarea class="form-control" id="materialFieldSummary" rows="3"
+            placeholder="Briefly describe what this lecture document covers..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('uploadMaterialModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Publish Material (بڵاوکردنەوەی ڤایل)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 12. Preview Material Modal -->
+  <div class="modal-overlay" id="previewMaterialModal">
+    <div class="modal-box" style="max-width: 640px;">
+      <button class="modal-close-btn" onclick="closeModal('previewMaterialModal')">✕</button>
+
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+        <div id="previewMatIcon"
+          style="width: 52px; height: 52px; border-radius: var(--radius-md); background: #ffffff; color: #000000; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800;">
+          📕
+        </div>
+        <div>
+          <span class="meta-pill" id="previewMatBadge"
+            style="border-color: #ffffff; color: #ffffff; margin-bottom: 4px;">CS-101</span>
+          <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0;" id="previewMatTitle">
+            Lecture Note
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;" id="previewMatSub">
+            Lecturer • Oct 2026
+          </p>
+        </div>
+      </div>
+
+      <div class="material-preview-box" id="previewMatContentBox">
+        <!-- Injected summary and preview text -->
+      </div>
+
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; flex-wrap: wrap; gap: 12px;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" id="previewMatFileSize">
+          File Size: 2.4 MB
+        </span>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="btn btn-secondary btn-sm"
+            onclick="closeModal('previewMaterialModal')">Close</button>
+          <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="previewMatDownloadBtn">
+            📥 Download File (داگرتن)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. Student Protected Cinema Video Player Modal (DRM Anti-Download & Anti-Recording) -->
+  <div class="modal-overlay" id="studentProtectedVideoModal">
+    <div class="modal-box"
+      style="max-width: 860px; padding: 24px; background: rgba(10, 10, 10, 0.98); border: 1px solid rgba(255, 255, 255, 0.2);">
+      <button class="modal-close-btn" onclick="closeProtectedVideoModal()">✕</button>
+
+      <!-- Video Header -->
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 16px; flex-wrap: wrap;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="meta-pill" id="protVidClassCode"
+              style="border-color: #ffffff; color: #ffffff; font-weight: 700;">CS-101</span>
+            <span class="drm-security-pill">🔒 DRM Anti-Download Enforced</span>
+            <span class="drm-security-pill">🚫 Screen Capture Shield Active</span>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0;" id="protVidTitle">
+            Class Lecture Video
+          </h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 4px 0 0;" id="protVidLecturer">
+            Instructor • Class Lecture Stream
+          </p>
+        </div>
+      </div>
+
+      <!-- Protected Video Frame Container -->
+      <div class="protected-video-container" id="protVidPlayerWrap" style="height: 440px; position: relative;">
+        <!-- Sleek Glassmorphic Floating Student Watermark (Compact Name & ID) -->
+        <div class="drm-student-watermark" id="protVidWatermark">
+          <span id="protVidStudentName">Student</span> • <span id="protVidStudentId">ID</span>
+        </div>
+
+        <!-- Privacy Blackout Screen (Fires when screen recorder or blur detected) -->
+        <div class="drm-blackout-shield" id="protVidBlackout">
+          <div style="font-size: 2.5rem; margin-bottom: 10px;">⚠️</div>
+          <h4 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+            Screen Capture / Focus Loss Blocked (تۆمارکردنی شاشە ڕاگیرا)
+          </h4>
+          <p
+            style="color: var(--text-muted); font-size: 0.88rem; max-width: 480px; margin: 0 auto 16px; line-height: 1.5;">
+            This lecture video is protected under C.I.S Academic Copyright. Screen capture, recording software, or
+            opening secondary windows automatically pauses the stream. Click back on the player to resume.
+          </p>
+          <button type="button" class="btn btn-primary btn-sm" onclick="resumeProtectedVideoPlayback()">
+            ▶️ Resume Protected Playback (دەستپێکردنەوە)
+          </button>
+        </div>
+
+        <!-- Native/Stream Player Element Target -->
+        <div id="protVidContentBox" style="width: 100%; height: 100%;">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Security Notice Footer -->
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; color: var(--text-muted);">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span>🛡️</span>
+          <span>Only for online streaming. Direct download and screencasting are disabled for student academic
+            privacy.</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeProtectedVideoModal()">
+          Close Player (داخستن)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. Teacher Add Assignment Modal -->
+  <div class="modal-overlay" id="teacherAddAssignmentModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <button class="modal-close-btn" onclick="closeModal('teacherAddAssignmentModal')">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+        📝 Create & Post Class Assignment (دانانی ئەرکی نوێ)
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Publish homework or coursework for your students with a deadline and max points.
+      </p>
+
+      <form id="teacherAddAssignmentForm" onsubmit="handleTeacherCreateAssignment(event)">
+        <div class="form-group">
+          <label>Select Target Class (پۆلی پەیوەندیدار)</label>
+          <select class="form-control" id="assignmentTargetClassSelect" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
+          <div class="form-group">
+            <label>Assignment Title (English)</label>
+            <input type="text" class="form-control" id="assignmentTitleEn" placeholder="e.g. Lab 04: CSS Flexbox Layout"
+              required>
+          </div>
+          <div class="form-group">
+            <label>Title (Kurdish - ناوی ئەرک بە کوردی)</label>
+            <input type="text" class="form-control" id="assignmentTitleKu"
+              placeholder="e.g. ڕاهێنانی ٤: دیزاین بە فلێکسبۆکس" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
+          <div class="form-group">
+            <label>Due Date / Deadline (بەرواری کۆتایی)</label>
+            <input type="date" class="form-control" id="assignmentDueDate" required>
+          </div>
+          <div class="form-group">
+            <label>Max Points / Grade (بەرزترین نمرە)</label>
+            <input type="number" class="form-control" id="assignmentMaxPoints" min="1" max="100" value="100" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 14px;">
+          <label>Instructions & Requirements (ڕێنمایی و داواکارییەکان)</label>
+          <textarea class="form-control" id="assignmentInstructions" rows="3"
+            placeholder="Describe the tasks, requirements, and submission format..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary"
+            onclick="closeModal('teacherAddAssignmentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Publish Assignment (بڵاوکردنەوەی ئەرک)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 14. Teacher View Submissions & Grade Modal -->
+  <div class="modal-overlay" id="teacherViewSubmissionsModal">
+    <div class="modal-box" style="max-width: 720px;">
+      <button class="modal-close-btn" onclick="closeModal('teacherViewSubmissionsModal')">✕</button>
+      <div
+        style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+        <div>
+          <span class="meta-pill" id="submissionsModalClassBadge"
+            style="border-color: #3b82f6; color: #60a5fa; margin-bottom: 4px;">CS-101</span>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0;" id="submissionsModalTitle">
+            Student Submissions
+          </h3>
+        </div>
+        <span class="meta-pill" id="submissionsModalCountBadge" style="border-color: #ffffff; color: #ffffff;">0
+          Submissions</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Review solutions submitted by enrolled students, assign grades, and provide feedback.
+      </p>
+
+      <div id="teacherSubmissionsListContainer" style="max-height: 440px; overflow-y: auto; padding-right: 4px;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. Student Submit Assignment Modal -->
+  <div class="modal-overlay" id="studentSubmitAssignmentModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="closeModal('studentSubmitAssignmentModal')">✕</button>
+      <span class="meta-pill" id="studentSubmitModalClassBadge"
+        style="border-color: #3b82f6; color: #60a5fa; margin-bottom: 6px;">CS-101</span>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;"
+        id="studentSubmitModalTitle">
+        Submit Assignment Solution
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 18px;" id="studentSubmitModalInstructions">
+        Instructions...
+      </p>
+
+      <form id="studentSubmitForm" onsubmit="handleStudentSubmitAssignment(event)">
+        <input type="hidden" id="studentSubmitAssignmentId">
+        <div class="form-group">
+          <label>Your Answer / Solution / Link (وەڵام، تێبینی یان لینکی GitHub / Drive)</label>
+          <textarea class="form-control" id="studentSubmitContent" rows="4"
+            placeholder="Type your answer, or paste GitHub/Google Drive project links here..." required></textarea>
+        </div>
+
+        <div class="form-group" style="margin-top: 14px;">
+          <label>Attached File / Code Package (فایلی هاوپێچ کراو)</label>
+          <input type="text" class="form-control" id="studentSubmitFileName"
+            placeholder="e.g. coursework_project_zhika.zip or report.pdf">
+          <small style="color: var(--text-muted); font-size: 0.78rem;">Enter the name of your file or archive
+            package.</small>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary"
+            onclick="closeModal('studentSubmitAssignmentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <span>Submit Solution (ڕادەستکردنی ئەرک)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 16. Developer & Website Creator Profile Modal -->
+  <div class="modal-overlay" id="developerAboutModal">
+    <div class="modal-box" style="max-width: 680px; padding: 0; background: transparent; border: none;">
+      <div class="developer-card">
+        <button class="modal-close-btn" onclick="closeModal('developerAboutModal')">✕</button>
+
+        <div class="developer-header">
+          <div class="developer-avatar-large">👨‍💻</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="meta-pill"
+                style="border-color: #ffffff; color: #ffffff; font-weight: 700; font-size: 0.76rem;"
+                data-i18n="devRole">Lead System Developer</span>
+              <span class="badge-verified" data-i18n="devVerified">✓ Verified Creator</span>
+            </div>
+            <h3 style="font-size: 1.6rem; font-weight: 800; color: #ffffff; margin: 0;" data-i18n="devName">
+              Zhiyar Hemn (Lead Developer)
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin: 4px 0 0;" data-i18n="devTitle">
+              Creator & Software Architect of C.I.S Cedars International College Digital Campus
+            </p>
+          </div>
+        </div>
+
+        <p style="color: #e4e4e7; font-size: 0.95rem; line-height: 1.6; margin-bottom: 18px;" data-i18n="devQuote">
+          Building this system was not merely about writing code; it was about engineering an ultra-fast, secure, and
+          modern digital ecosystem that elevates academic learning and college administration to a brand-new era.
+        </p>
+
+        <!-- Technical Specification Badges -->
+        <div class="developer-spec-grid">
+          <div class="developer-spec-item">
+            <h5 data-i18n="devSpecArch">⚡ Architecture</h5>
+            <p data-i18n="devSpecArchVal">SPA (Single-Page Application)</p>
+          </div>
+          <div class="developer-spec-item">
+            <h5 data-i18n="devSpecSecurity">🛡️ Security & Roles</h5>
+            <p data-i18n="devSpecSecurityVal">Gated Student, Faculty & Admin Hub</p>
+          </div>
+          <div class="developer-spec-item">
+            <h5 data-i18n="devSpecLang">🌐 Languages</h5>
+            <p data-i18n="devSpecLangVal">Bilingual (Kurdish RTL / English LTR)</p>
+          </div>
+          <div class="developer-spec-item">
+            <h5 data-i18n="devSpecPersist">💾 Persistence</h5>
+            <p data-i18n="devSpecPersistVal">LocalStorage Offline & Cloud Ready</p>
+          </div>
+        </div>
+
+        <div
+          style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px; margin: 20px 0;">
+          <h4 style="font-size: 0.9rem; color: #ffffff; font-weight: 700; margin-bottom: 8px;"
+            data-i18n="devContactTitle">
+            📩 Developer Contact & Inquiries
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.86rem; color: var(--text-muted);">
+            <div>✉️ Email: <strong style="color: #ffffff;">xxx505058@gmail.com</strong></div>
+            <div>📱 Phone / WhatsApp: <strong style="color: #ffffff;">+964 (0) 772 924 5474</strong></div>
+            <div>📍 <span data-i18n="devLocationLabel">Location:</span> <strong style="color: #ffffff;"
+                data-i18n="devLocation">Sulaymaniyah, Kurdistan Region</strong></div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('developerAboutModal')"
+            data-i18n="btnDevClose">Close</button>
+          <button type="button" class="btn btn-primary btn-sm"
+            onclick="closeModal('developerAboutModal'); navigateToContact();" data-i18n="btnDevSendMsg">
+            💬 Send Message in Contact Hub
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FLOATING SMART AI CHAT & WHATSAPP HELP DESK WIDGET
+       ========================================================================== -->
+  <div class="chat-widget-wrapper" id="cisChatWidgetWrapper">
+    <!-- Chat Window Container -->
+    <div class="chat-widget-window" id="cisChatWidgetWindow" style="display: none;">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-bot-avatar">
+            <span>🤖</span>
+            <span class="chat-online-indicator"></span>
+          </div>
+          <div>
+            <h4 class="chat-title" id="chatHeaderTitle">C.I.S Smart Assistant</h4>
+            <div class="chat-subtitle" id="chatHeaderSubtitle">
+              <span class="live-dot"></span> Online 24/7 • ژیری دەستکرد & واتسئەپ
+            </div>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button type="button" class="chat-head-btn" onclick="clearChatWidgetMessages()"
+            title="Clear Chat / سڕینەوەی پەیامەکان">
+            🗑️
+          </button>
+          <button type="button" class="chat-head-btn" onclick="toggleChatWidget(false)" title="Close / داخستن">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Direct Official WhatsApp Quick Banner -->
+      <a href="https://wa.me/9647723188000?text=%D8%B3%D9%84%D8%A7%D9%88%D8%8C%20%D8%AF%DB%95%D9%85%DB%95%D9%88%DB%8C%D8%AA%20%D8%B2%D8%A7%D9%86%DB%8C%D8%A7%D8%B1%DB%8C%20%D9%88%DB%95%D8%B1%DA%AF%D8%B1%D9%85%20%D8%AF%DB%95%D8%B1%D8%A8%D8%A7%D8%B1%DB%95%DB%8C%20%DA%A9%DB%8E%D9%84%DB%8E%DA%98%DB%8C%20C.I.S"
+        target="_blank" rel="noopener noreferrer" class="chat-whatsapp-banner" id="chatWhatsAppBanner">
+        <div class="chat-wa-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.073-2.18-.541-1.895-.787-3.117-2.73-3.212-2.857-.094-.127-.768-1.022-.768-1.948 0-.927.487-1.382.66-1.572.174-.189.38-.238.508-.238.127 0 .254.001.365.006.118.006.275-.045.43.328.159.38.541 1.319.589 1.414.048.095.079.206.016.333-.064.127-.095.206-.19.317-.095.111-.2.247-.286.333-.095.095-.195.198-.084.388.111.19.493.813 1.058 1.317.728.649 1.341.85 1.531.945.19.095.302.079.413-.048.111-.127.476-.555.603-.745.127-.19.254-.159.429-.095.175.064 1.111.524 1.302.619.19.095.317.143.365.222.048.079.048.46-.096.865z" />
+          </svg>
+        </div>
+        <div class="chat-wa-text-wrap">
+          <strong id="chatWaTitle">Chat Directly on WhatsApp</strong>
+          <span id="chatWaSubtitle">قسەکردنی ڕاستەوخۆ لەگەڵ کارگێڕی کۆلێژ (+964 772 318 8000)</span>
+        </div>
+        <span class="chat-wa-arrow">➔</span>
+      </a>
+
+      <!-- Chat Messages Container -->
+      <div class="chat-messages" id="cisChatMessagesContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Quick Question Suggestion Chips -->
+      <div class="chat-suggestions-wrapper">
+        <div class="chat-suggestions-label" id="chatSuggestionsLabel">💡 پرسیارە خێرا باوەکان:</div>
+        <div class="chat-suggestions" id="cisChatSuggestions">
+          <!-- Injected dynamically based on language -->
+        </div>
+      </div>
+
+      <!-- Chat Input Area -->
+      <form class="chat-input-row" onsubmit="handleSendUserChatMessage(event)">
+        <input type="text" id="cisChatUserInput" class="chat-input-field"
+          placeholder="Type a question... (پرسیارێک بنووسە)" autocomplete="off" maxlength="250">
+        <button type="submit" class="chat-send-btn" id="cisChatSendBtn" title="Send / ناردن">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Floating Toggle Button -->
+    <button type="button" class="chat-floating-btn" id="btnToggleChatWidget" onclick="toggleChatWidget()"
+      title="C.I.S Smart Help & WhatsApp" aria-label="Open Chat Assistant">
+      <span class="chat-btn-icon chat-icon-open" id="chatFloatingIconOpen">💬</span>
+      <span class="chat-btn-icon chat-icon-close" id="chatFloatingIconClose" style="display: none;">✕</span>
+      <span class="chat-badge-pulse"></span>
+      <span class="chat-btn-tooltip" id="chatBtnTooltip">AI & WhatsApp Help (یاریدەدەری زیرەک)</span>
+    </button>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
